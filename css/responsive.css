@@ -1,0 +1,79 @@
+@media(max-width:1023px){.hero__grid{grid-template-columns:1fr;gap:30px}.hero{min-height:auto;padding:96px 0}.hero__content{max-width:760px}.hero-visual{min-height:360px}.card-grid--four{grid-template-columns:repeat(2,1fr)}.card-grid--three,.project-grid{grid-template-columns:repeat(2,1fr)}.process{grid-template-columns:1fr;gap:26px}.process article{padding-left:44px}.process article:not(:last-child)::after{top:30px;left:14px;width:1px;height:calc(100% + 26px);transform:none}.process span{position:absolute;left:0;top:0}.diagnosis__grid{grid-template-columns:1fr;gap:40px}.positioning__grid{gap:50px}}
+@media(max-width:767px){:root{--header-height:64px}.container{width:min(calc(100% - 40px),var(--container-width))}.section{padding:76px 0}.main-nav{position:fixed;inset:var(--header-height) 0 auto 0;display:none;flex-direction:column;align-items:stretch;gap:0;padding:18px 20px 24px;border-top:1px solid var(--color-border);background:#fff;box-shadow:0 12px 25px rgba(0,0,0,.08)}.main-nav.is-open{display:flex}.main-nav a:not(.button){padding:14px 4px}.main-nav .button{margin-top:10px}.nav-toggle{display:block}.brand__text{display:none}.hero{padding:76px 0 68px}.hero__content h1{margin-bottom:20px}.hero__lead{font-size:1rem}.hero__actions{flex-direction:column;align-items:stretch}.hero__actions .button{width:100%}.hero-visual{min-height:300px}.network-card{padding:20px}.network-card__diagram{inset:66px 24px;transform:scale(.86);transform-origin:top center}.network-card__bottom{left:20px;bottom:20px}.specialties__inner{min-height:60px;overflow:hidden;justify-content:flex-start;white-space:nowrap;gap:18px;font-size:.62rem}.card-grid--four,.card-grid--three,.project-grid{grid-template-columns:1fr}.section-heading{margin-bottom:36px}.info-card,.service-card{padding:24px}.plan-card--featured{transform:none}.support__complement{align-items:flex-start;flex-direction:column}.support__complement .text-link{margin-left:0}.positioning__grid{grid-template-columns:1fr;gap:26px}.pillars{grid-template-columns:1fr}.diagnosis-form{padding:24px}.form-grid,.check-grid{grid-template-columns:1fr}.footer__grid{grid-template-columns:1fr;gap:30px}.footer__bottom{flex-direction:column}.floating-whatsapp{right:16px;left:16px;bottom:14px;justify-content:center;border-radius:8px}body{padding-bottom:62px}}
+
+/* --------------------------------------------------------------------------
+   Ajustes visuales de la versión geométrica del Hero y las tarjetas.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .hero-orbit {
+    width: min(100%, 500px);
+  }
+
+  .hero-node--server { left: 0; }
+  .hero-node--security { right: 0; }
+  .hero-node--device { left: 2%; }
+  .hero-node--users { right: 2%; }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 72px 0 58px;
+  }
+
+  .hero-visual {
+    min-height: 390px;
+    margin-top: 8px;
+  }
+
+  .hero-orbit {
+    width: min(100%, 420px);
+  }
+
+  .hero-core {
+    width: 128px;
+    height: 128px;
+  }
+
+  .hero-core__hex {
+    width: 104px;
+    height: 92px;
+  }
+
+  .hero-core__hex span {
+    font-size: 1.25rem;
+  }
+
+  .hero-node {
+    min-width: 72px;
+    font-size: .56rem;
+  }
+
+  .hero-node__icon {
+    width: 54px;
+    height: 54px;
+  }
+
+  .hero-node__icon svg {
+    width: 35px;
+    height: 35px;
+  }
+
+  .hero-node--server { left: 0; top: 24%; }
+  .hero-node--security { right: 0; top: 24%; }
+  .hero-node--device { left: 1%; bottom: 17%; }
+  .hero-node--users { right: 1%; bottom: 17%; }
+
+  .service-card {
+    min-height: auto;
+  }
+
+  .service-card__visual {
+    width: 68px;
+    height: 68px;
+  }
+
+  .service-icon {
+    width: 64px;
+    height: 64px;
+  }
+}

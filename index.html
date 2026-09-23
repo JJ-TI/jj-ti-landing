@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es-SV">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="JJ-TI ofrece soporte TI, infraestructura y redes, ciberseguridad, Microsoft 365, cloud, CCTV y respaldo para empresas en El Salvador.">
+<meta name="theme-color" content="#191970"><meta property="og:title" content="JJ-TI | Soluciones Tecnológicas"><meta property="og:description" content="Tecnología diseñada para que tu empresa funcione mejor."><meta property="og:type" content="website">
+<title>JJ-TI | Soporte TI, Redes, Ciberseguridad y Cloud en El Salvador</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/icons.css">
+<link rel="stylesheet" href="css/sections.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<!--
+  Sprite SVG reutilizable.
+  Cada <symbol> define un icono una sola vez; las tarjetas lo consumen con <use>.
+  Así evitamos repetir SVG largos en cada tarjeta y mantenemos el HTML limpio.
+-->
+<svg class="svg-sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="icon-support" viewBox="0 0 100 100">
+      <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" class="service-icon__frame"/>
+      <rect x="27" y="28" width="38" height="28" rx="3" class="service-icon__stroke service-icon__white"/>
+      <path d="M37 64h18M46 56v8" class="service-icon__stroke service-icon__cyan"/>
+      <circle cx="66" cy="65" r="11" fill="var(--color-primary)" stroke="var(--color-accent)" stroke-width="2.5"/>
+      <path d="M66 59v12M60 65h12M62 61l8 8M70 61l-8 8" class="service-icon__stroke service-icon__cyan"/>
+    </symbol>
+    <symbol id="icon-network" viewBox="0 0 100 100">
+      <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" class="service-icon__frame"/>
+      <rect x="35" y="39" width="30" height="18" rx="3" class="service-icon__stroke service-icon__white"/>
+      <path d="M40 45h3M48 45h3M56 45h3M50 39V25M34 62l-12 10M66 62l12 10" class="service-icon__stroke service-icon__cyan"/>
+      <circle cx="50" cy="20" r="5" fill="var(--color-primary)" stroke="var(--color-accent)" stroke-width="2.5"/>
+      <circle cx="18" cy="76" r="5" fill="var(--color-primary)" stroke="var(--color-cyan)" stroke-width="2.5"/>
+      <circle cx="82" cy="76" r="5" fill="var(--color-primary)" stroke="var(--color-cyan)" stroke-width="2.5"/>
+    </symbol>
+    <symbol id="icon-cloud" viewBox="0 0 100 100">
+      <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" class="service-icon__frame"/>
+      <path d="M31 61h39c7 0 11-5 11-10 0-6-5-10-11-10-2-9-9-14-17-14-9 0-16 6-18 14-7 0-12 4-12 10s4 10 8 10z" class="service-icon__stroke service-icon__white"/>
+      <path d="M50 47v25M43 65l7 7 7-7M38 55l7 7 7-7" class="service-icon__stroke service-icon__cyan"/>
+      <path d="M68 55l-7 7-7-7" class="service-icon__stroke service-icon__gold"/>
+    </symbol>
+    <symbol id="icon-security" viewBox="0 0 100 100">
+      <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" class="service-icon__frame"/>
+      <path d="M50 22l23 9v16c0 16-10 25-23 31-13-6-23-15-23-31V31l23-9z" class="service-icon__stroke service-icon__cyan"/>
+      <rect x="42" y="46" width="16" height="15" rx="3" class="service-icon__stroke service-icon__white"/>
+      <path d="M45 46v-4c0-7 10-7 10 0v4M50 51v5" class="service-icon__stroke service-icon__gold"/>
+      <circle cx="50" cy="56" r="1.5" class="service-icon__fill-white"/>
+    </symbol>
+    <symbol id="icon-cctv" viewBox="0 0 100 100">
+      <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" class="service-icon__frame"/>
+      <path d="M27 39h44l-7 19H34z" class="service-icon__stroke service-icon__white"/>
+      <circle cx="60" cy="48" r="7" class="service-icon__stroke service-icon__cyan"/>
+      <path d="M34 58l-8 10M43 58v13M68 58l8 10" class="service-icon__stroke service-icon__gold"/>
+      <path d="M22 70h14" class="service-icon__stroke service-icon__cyan"/>
+    </symbol>
+    <symbol id="icon-backup" viewBox="0 0 100 100">
+      <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" class="service-icon__frame"/>
+      <ellipse cx="50" cy="34" rx="22" ry="8" class="service-icon__stroke service-icon__white"/>
+      <path d="M28 34v27c0 5 10 9 22 9s22-4 22-9V34M28 47c0 5 10 9 22 9s22-4 22-9" class="service-icon__stroke service-icon__white"/>
+      <path d="M68 67c8-2 13-8 13-16M81 51l-5 2M81 51l-1 6" class="service-icon__stroke service-icon__cyan"/>
+      <path d="M31 74c-8-2-13-8-13-16M18 58l5 2M18 58l1 6" class="service-icon__stroke service-icon__gold"/>
+    </symbol>
+
+    <!-- Iconos simplificados para el ecosistema visual del Hero. -->
+    <symbol id="icon-hero-cloud" viewBox="0 0 80 80">
+      <path d="M19 48h40c7 0 11-5 11-11 0-6-5-11-11-11-2-9-9-14-18-14-9 0-16 6-18 15-7 0-12 5-12 11s4 10 8 10z" class="service-icon__stroke service-icon__white"/>
+      <path d="M40 53V30M33 37l7-7 7 7" class="service-icon__stroke service-icon__cyan"/>
+    </symbol>
+    <symbol id="icon-hero-server" viewBox="0 0 80 80">
+      <rect x="20" y="18" width="40" height="18" rx="3" class="service-icon__stroke service-icon__white"/>
+      <rect x="20" y="43" width="40" height="18" rx="3" class="service-icon__stroke service-icon__white"/>
+      <path d="M27 27h3M35 27h3M27 52h3M35 52h3" class="service-icon__stroke service-icon__cyan"/>
+    </symbol>
+    <symbol id="icon-hero-shield" viewBox="0 0 80 80">
+      <path d="M40 10l22 9v16c0 15-9 24-22 30-13-6-22-15-22-30V19l22-9z" class="service-icon__stroke service-icon__white"/>
+      <path d="M32 39l6 6 12-14" class="service-icon__stroke service-icon__cyan"/>
+    </symbol>
+    <symbol id="icon-hero-device" viewBox="0 0 80 80">
+      <rect x="16" y="17" width="48" height="32" rx="4" class="service-icon__stroke service-icon__white"/>
+      <path d="M29 61h22M40 49v12" class="service-icon__stroke service-icon__cyan"/>
+    </symbol>
+    <symbol id="icon-hero-users" viewBox="0 0 80 80">
+      <circle cx="31" cy="30" r="9" class="service-icon__stroke service-icon__white"/>
+      <circle cx="51" cy="34" r="7" class="service-icon__stroke service-icon__cyan"/>
+      <path d="M16 61c2-12 9-17 15-17s13 5 15 17M46 61c1-8 5-12 10-12s9 4 10 12" class="service-icon__stroke service-icon__white"/>
+    </symbol>
+    <symbol id="icon-hero-camera" viewBox="0 0 80 80">
+      <path d="M16 26h42l-8 25H24z" class="service-icon__stroke service-icon__white"/>
+      <circle cx="51" cy="38" r="8" class="service-icon__stroke service-icon__cyan"/>
+      <path d="M25 51l-7 12M38 51v13" class="service-icon__stroke service-icon__gold"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header" data-header><div class="container header__inner">
+<a class="brand" href="#inicio" aria-label="JJ-TI, inicio"><span class="brand__mark">JJ-TI</span><span class="brand__text">Soluciones Tecnológicas</span></a>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" data-nav-toggle><span class="sr-only">Abrir menú</span><span></span><span></span><span></span></button>
+<nav class="main-nav" id="main-navigation" aria-label="Navegación principal" data-navigation><a href="#soluciones">Soluciones</a><a href="#soporte">Soporte TI</a><a href="#proyectos">Proyectos</a><a href="#proceso">Cómo trabajamos</a><a class="button button--small button--primary" href="#diagnostico">Solicitar diagnóstico</a></nav>
+</div></header>
+<main>
+<section class="hero section section--dark" id="inicio"><div class="hero__grid container"><div class="hero__content"><p class="eyebrow eyebrow--accent">SOLUCIONES TECNOLÓGICAS PARA EMPRESAS</p><h1>Tecnología diseñada para que tu empresa <span>funcione mejor.</span></h1><p class="hero__lead">Soporte TI, infraestructura, ciberseguridad, cloud y soluciones tecnológicas para pequeñas y medianas empresas en El Salvador.</p><div class="hero__actions"><a class="button button--primary" href="#diagnostico">Solicitar diagnóstico</a><a class="button button--outline-light" href="https://wa.me/?text=Hola%2C%20JJ-TI.%20Me%20gustar%C3%ADa%20conocer%20sus%20servicios." target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a></div><p class="hero__meta">Soporte remoto y presencial <span>·</span> Proyectos tecnológicos <span>·</span> Gestión TI</p></div>
+<div class="hero-visual" aria-hidden="true">
+  <div class="hero-orbit">
+    <span class="hero-orbit__ring hero-orbit__ring--outer"></span>
+    <span class="hero-orbit__ring hero-orbit__ring--inner"></span>
+    <span class="hero-orbit__pulse hero-orbit__pulse--one"></span>
+    <span class="hero-orbit__pulse hero-orbit__pulse--two"></span>
+    <span class="hero-orbit__line hero-orbit__line--one"></span>
+    <span class="hero-orbit__line hero-orbit__line--two"></span>
+    <span class="hero-orbit__line hero-orbit__line--three"></span>
+    <span class="hero-orbit__line hero-orbit__line--four"></span>
+    <span class="hero-orbit__line hero-orbit__line--five"></span>
+    <span class="hero-orbit__line hero-orbit__line--six"></span>
+
+    <div class="hero-core">
+      <span class="hero-core__glow"></span>
+      <div class="hero-core__hex">
+        <span>JJ-TI</span>
+        <small>TECH</small>
+      </div>
+    </div>
+
+    <div class="hero-node hero-node--cloud"><span class="hero-node__icon"><svg><use href="#icon-hero-cloud"></use></svg></span><span>Cloud</span></div>
+    <div class="hero-node hero-node--server"><span class="hero-node__icon"><svg><use href="#icon-hero-server"></use></svg></span><span>Infraestructura</span></div>
+    <div class="hero-node hero-node--security"><span class="hero-node__icon"><svg><use href="#icon-hero-shield"></use></svg></span><span>Seguridad</span></div>
+    <div class="hero-node hero-node--device"><span class="hero-node__icon"><svg><use href="#icon-hero-device"></use></svg></span><span>Gestión TI</span></div>
+    <div class="hero-node hero-node--users"><span class="hero-node__icon"><svg><use href="#icon-hero-users"></use></svg></span><span>Usuarios</span></div>
+    <div class="hero-node hero-node--camera"><span class="hero-node__icon"><svg><use href="#icon-hero-camera"></use></svg></span><span>CCTV</span></div>
+  </div>
+</div></div></section>
+<section class="specialties"><div class="container specialties__inner"><span>Soporte TI</span><span>Infraestructura</span><span>Cloud</span><span>Ciberseguridad</span><span>Continuidad</span></div></section>
+<section class="section section--soft" id="problema"><div class="container"><div class="section-heading section-heading--center"><p class="eyebrow">EL PROBLEMA</p><h2>Cuando la tecnología falla, también se detiene tu empresa.</h2><p>Los problemas tecnológicos terminan afectando la productividad, la seguridad y la continuidad de la operación.</p></div><div class="card-grid card-grid--four"><article class="info-card"><div class="icon-box">01</div><h3>Equipos con problemas</h3><p>Incidentes recurrentes que interrumpen el trabajo de tus usuarios.</p></article><article class="info-card"><div class="icon-box">02</div><h3>Red inestable</h3><p>Conectividad deficiente, infraestructura desordenada o falta de visibilidad.</p></article><article class="info-card"><div class="icon-box">03</div><h3>Riesgos de seguridad</h3><p>Equipos, identidades y datos que necesitan mayor protección.</p></article><article class="info-card"><div class="icon-box">04</div><h3>Cloud y productividad</h3><p>Necesidades de Microsoft 365, migración, configuración o administración.</p></article></div><div class="section-cta"><a href="#diagnostico" class="text-link">Cuéntanos qué necesitas resolver <span>→</span></a></div></div></section>
+<section class="section" id="soluciones"><div class="container"><div class="section-heading"><p class="eyebrow">SOLUCIONES TI</p><h2>Soluciones tecnológicas para tu empresa</h2><p>Desde el soporte diario hasta proyectos de infraestructura, seguridad y transformación tecnológica.</p></div><div class="card-grid card-grid--three">
+<article class="service-card service-card--featured"><span class="service-card__number">01</span><div class="service-card__visual"><svg class="service-icon" viewBox="0 0 100 100"><use href="#icon-support"></use></svg></div><h3>Soporte y Gestión TI</h3><p>Soporte, mantenimiento y gestión de recursos tecnológicos para mantener tu operación funcionando.</p><a href="#soporte">Conocer solución <span aria-hidden="true">→</span></a></article>
+<article class="service-card"><span class="service-card__number">02</span><div class="service-card__visual"><svg class="service-icon" viewBox="0 0 100 100"><use href="#icon-network"></use></svg></div><h3>Infraestructura y Redes</h3><p>Diseño, implementación y optimización de redes, servidores e infraestructura.</p><a href="#proyectos">Conocer solución <span aria-hidden="true">→</span></a></article>
+<article class="service-card"><span class="service-card__number">03</span><div class="service-card__visual"><svg class="service-icon" viewBox="0 0 100 100"><use href="#icon-cloud"></use></svg></div><h3>Cloud y Productividad</h3><p>Implementación, migración y administración de cloud, colaboración y productividad.</p><a href="#proyectos">Conocer solución <span aria-hidden="true">→</span></a></article>
+<article class="service-card"><span class="service-card__number">04</span><div class="service-card__visual"><svg class="service-icon" viewBox="0 0 100 100"><use href="#icon-security"></use></svg></div><h3>Ciberseguridad</h3><p>Protección de sistemas, identidades, dispositivos, redes e información.</p><a href="#diagnostico">Conocer solución <span aria-hidden="true">→</span></a></article>
+<article class="service-card"><span class="service-card__number">05</span><div class="service-card__visual"><svg class="service-icon" viewBox="0 0 100 100"><use href="#icon-cctv"></use></svg></div><h3>CCTV y Videovigilancia</h3><p>Soluciones de videovigilancia analógica, IP y Wi-Fi para empresas.</p><a href="#proyectos">Conocer solución <span aria-hidden="true">→</span></a></article>
+<article class="service-card"><span class="service-card__number">06</span><div class="service-card__visual"><svg class="service-icon" viewBox="0 0 100 100"><use href="#icon-backup"></use></svg></div><h3>Respaldo y Continuidad</h3><p>Protección, recuperación y disponibilidad de la información y servicios críticos.</p><a href="#diagnostico">Conocer solución <span aria-hidden="true">→</span></a></article>
+</div></div></section>
+<section class="section support section--dark" id="soporte"><div class="container"><div class="section-heading section-heading--center section-heading--light"><p class="eyebrow eyebrow--accent">SOPORTE Y GESTIÓN TI</p><h2>Tu departamento de TI, sin contratar un departamento de TI.</h2><p>JJ-TI puede convertirse en el aliado tecnológico que tu empresa necesita para gestionar sus equipos, usuarios, infraestructura y necesidades de TI.</p></div><div class="card-grid card-grid--three support__plans">
+<article class="plan-card"><p class="plan-card__label">PLAN 01</p><h3>Operación Esencial</h3><p>Para pequeñas empresas que necesitan apoyo tecnológico confiable.</p><ul><li>Soporte remoto</li><li>Atención de incidentes</li><li>Mantenimiento preventivo</li><li>Inventario y gestión básica</li><li>Recomendaciones técnicas</li></ul><a href="#diagnostico" class="button button--outline-light">Consultar este plan</a></article>
+<article class="plan-card plan-card--featured"><p class="plan-card__label">PLAN 02</p><h3>Gestión Activa</h3><p>Para empresas que necesitan mayor supervisión y acompañamiento.</p><ul><li>Todo lo de Operación Esencial</li><li>Atención prioritaria</li><li>Supervisión de equipos</li><li>Actualizaciones y administración</li><li>Documentación y mejoras</li></ul><a href="#diagnostico" class="button button--primary">Consultar este plan</a></article>
+<article class="plan-card"><p class="plan-card__label">PLAN 03</p><h3>Gestión Integral</h3><p>Para organizaciones con mayor dependencia tecnológica o múltiples ubicaciones.</p><ul><li>Todo lo de Gestión Activa</li><li>Monitoreo centralizado</li><li>Administración de servidores</li><li>Supervisión de infraestructura</li><li>Reportes y acompañamiento</li></ul><a href="#diagnostico" class="button button--outline-light">Consultar este plan</a></article>
+</div><div class="support__complement"><strong>¿Necesitas algo diferente?</strong><span>Complementa tu gestión TI con ciberseguridad, respaldo, cloud, CCTV u otros servicios especializados.</span><a class="text-link text-link--light" href="#diagnostico">Diseñar mi solución →</a></div></div></section>
+<section class="section section--soft" id="proyectos"><div class="container"><div class="section-heading section-heading--center"><p class="eyebrow">PROYECTOS</p><h2>¿Necesitas implementar o renovar tecnología?</h2><p>Diseñamos e implementamos soluciones adaptadas a las necesidades de tu empresa.</p></div><div class="project-grid"><article><span>01</span><h3>Infraestructura</h3><p>Redes, servidores, NAS y organización tecnológica.</p></article><article><span>02</span><h3>Cloud</h3><p>Microsoft 365, migraciones, integración y servicios cloud.</p></article><article><span>03</span><h3>Seguridad</h3><p>Protección de sistemas, dispositivos, identidades y datos.</p></article><article><span>04</span><h3>CCTV</h3><p>Videovigilancia empresarial analógica, IP y Wi-Fi.</p></article><article><span>05</span><h3>Automatización</h3><p>Optimización e integración de procesos tecnológicos.</p></article><article><span>06</span><h3>Equipamiento</h3><p>Selección, suministro, configuración e integración.</p></article></div><div class="section-cta"><a href="#diagnostico" class="button button--secondary">Cuéntanos sobre tu proyecto</a></div></div></section>
+<section class="section positioning section--dark"><div class="container positioning__grid"><div><p class="eyebrow eyebrow--accent">NUESTRA FORMA DE TRABAJAR</p><h2>No solo resolvemos problemas. Diseñamos soluciones para prevenirlos.</h2></div><div><p>Buscamos entender cómo la tecnología impacta la operación de tu empresa para ayudarte a tomar mejores decisiones.</p><div class="pillars"><span>✓ Un solo aliado tecnológico</span><span>✓ Soluciones según tu necesidad</span><span>✓ Enfoque preventivo</span><span>✓ Acompañamiento</span></div></div></div></section>
+<section class="section" id="proceso"><div class="container"><div class="section-heading section-heading--center"><p class="eyebrow">CÓMO TRABAJAMOS</p><h2>Un proceso claro, desde el primer contacto.</h2></div><div class="process"><article><span>01</span><h3>Nos cuentas</h3><p>Conocemos tu necesidad y el contexto de tu empresa.</p></article><article><span>02</span><h3>Evaluamos</h3><p>Analizamos el problema, alcance y prioridades.</p></article><article><span>03</span><h3>Proponemos</h3><p>Definimos una solución adecuada a tu operación.</p></article><article><span>04</span><h3>Implementamos</h3><p>Ejecutamos el servicio o proyecto acordado.</p></article><article><span>05</span><h3>Damos continuidad</h3><p>Acompañamos la operación y evolución tecnológica.</p></article></div></div></section>
+<section class="section diagnosis section--soft" id="diagnostico"><div class="container diagnosis__grid"><div class="diagnosis__intro"><p class="eyebrow">PRIMER PASO</p><h2>¿Qué necesita resolver tu empresa?</h2><p>Cuéntanos brevemente qué está pasando y evaluaremos cómo podemos ayudarte.</p><div class="diagnosis__note"><strong>Sin soluciones genéricas.</strong><br>Primero entendemos tu necesidad. Después proponemos el camino más conveniente.</div></div>
+<form class="diagnosis-form" data-diagnosis-form><div class="form-grid"><div class="field"><label for="name">Nombre</label><input id="name" name="name" type="text" autocomplete="name" required></div><div class="field"><label for="company">Empresa</label><input id="company" name="company" type="text" autocomplete="organization" required></div><div class="field"><label for="phone">WhatsApp / Teléfono</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div><div class="field"><label for="email">Correo electrónico</label><input id="email" name="email" type="email" autocomplete="email" required></div></div><fieldset class="field-group"><legend>¿Qué necesitas?</legend><div class="check-grid"><label><input type="checkbox" name="needs" value="Soporte TI"> Soporte TI</label><label><input type="checkbox" name="needs" value="Redes / Infraestructura"> Redes / Infraestructura</label><label><input type="checkbox" name="needs" value="Ciberseguridad"> Ciberseguridad</label><label><input type="checkbox" name="needs" value="Microsoft 365 / Cloud"> Microsoft 365 / Cloud</label><label><input type="checkbox" name="needs" value="CCTV"> CCTV</label><label><input type="checkbox" name="needs" value="Backup / Continuidad"> Backup / Continuidad</label><label><input type="checkbox" name="needs" value="Equipamiento"> Equipamiento</label><label><input type="checkbox" name="needs" value="Automatización"> Automatización</label><label><input type="checkbox" name="needs" value="Otro"> Otro</label></div></fieldset><div class="field"><label for="message">Cuéntanos brevemente</label><textarea id="message" name="message" rows="4" placeholder="Describe brevemente qué necesitas resolver..." required></textarea></div><button class="button button--primary button--full" type="submit">Solicitar diagnóstico</button><p class="form-note">Tus datos serán utilizados únicamente para atender tu solicitud.</p><p class="form-status" role="status" aria-live="polite" data-form-status></p></form></div></section>
+</main>
+<footer class="site-footer"><div class="container footer__grid"><div><div class="brand brand--footer"><span class="brand__mark">JJ-TI</span><span class="brand__text">Soluciones Tecnológicas</span></div><p>Tecnología diseñada para que tu empresa funcione mejor.</p></div><div><h3>Soluciones</h3><a href="#soporte">Soporte TI</a><a href="#proyectos">Infraestructura y Redes</a><a href="#proyectos">Cloud</a><a href="#proyectos">Ciberseguridad</a><a href="#proyectos">CCTV</a></div><div><h3>Contacto</h3><a href="#diagnostico">Solicitar diagnóstico</a><a href="mailto:info@jj-ti.net">info@jj-ti.net</a><a href="https://jj-ti.net" target="_blank" rel="noopener noreferrer">jj-ti.net</a></div></div><div class="container footer__bottom"><span>© 2026 JJ-TI — Soluciones Tecnológicas</span><span>El Salvador</span></div></footer>
+<a class="floating-whatsapp" href="https://wa.me/?text=Hola%2C%20JJ-TI.%20Me%20gustar%C3%ADa%20conocer%20sus%20servicios." target="_blank" rel="noopener noreferrer" aria-label="Contactar a JJ-TI por WhatsApp">WhatsApp</a>
+<script src="js/navigation.js" defer></script><script src="js/whatsapp.js" defer></script><script src="js/form.js" defer></script><script src="js/main.js" defer></script>
+</body></html>

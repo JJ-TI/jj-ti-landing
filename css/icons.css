@@ -1,0 +1,62 @@
+/**
+ * JJ-TI — Icon system
+ *
+ * Los iconos se renderizan como SVG inline mediante <use> y <symbol>.
+ * Esto evita dependencias externas, mantiene los gráficos nítidos en cualquier
+ * resolución y permite controlar sus colores desde CSS.
+ */
+
+.service-icon {
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  color: var(--color-primary);
+  filter: drop-shadow(0 8px 16px rgba(25, 25, 112, 0.12));
+}
+
+.service-icon__frame {
+  fill: rgba(25, 25, 112, 0.06);
+  stroke: var(--color-primary);
+  stroke-width: 2.5;
+}
+
+.service-icon__cyan {
+  stroke: var(--color-cyan);
+}
+
+.service-icon__gold {
+  stroke: var(--color-accent);
+}
+
+.service-icon__white {
+  stroke: #fff;
+}
+
+.service-icon__fill-primary {
+  fill: var(--color-primary);
+}
+
+.service-icon__fill-cyan {
+  fill: var(--color-cyan);
+}
+
+.service-icon__fill-gold {
+  fill: var(--color-accent);
+}
+
+.service-icon__fill-white {
+  fill: #fff;
+}
+
+.service-icon__stroke {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+/* El icono puede usarse sobre la tarjeta destacada oscura. */
+.service-card--featured .service-icon {
+  filter: drop-shadow(0 8px 18px rgba(0, 255, 255, 0.12));
+}
