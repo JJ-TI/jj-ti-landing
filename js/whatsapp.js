@@ -13,7 +13,7 @@
    * Número de WhatsApp de JJ-TI en formato internacional sin `+`.
    * Vacío por seguridad hasta que se configure el número comercial definitivo.
    */
-  const phone = '';
+  const phone = '50379124962';
 
   /** Mensaje inicial utilizado por los CTA de WhatsApp. */
   const message = 'Hola, JJ-TI. Me gustaría conocer sus servicios porque necesito ayuda con tecnología para mi empresa.';
