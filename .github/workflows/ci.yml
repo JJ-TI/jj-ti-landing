@@ -1,27 +1,58 @@
+
+# Nombre descriptivo del workflow que aparece en la pestaña "Actions" de GitHub
 name: CI
 
+# --- FASE 1: ACTIVADORES (TRIGGERS) ---
+# Define los eventos del repositorio que desencadenan la ejecución del workflow
 on:
+  # Se ejecuta cuando se realiza un 'push' directo a las ramas integradas.
+  # Garantiza la integridad del código al momento de fusionarse.
   push:
     branches:
-      - develop
       - main
+      - develop
+
+  # Se ejecuta cuando se abre, actualiza o reabre un Pull Request hacia las ramas destino.
+  # Permite validar los cambios propuestos ANTES de permitir el merge.
   pull_request:
     branches:
-      - develop
       - main
+      - develop
+    types: [opened, synchronize, reopened]
 
+# --- FASE 2: CONTROL DE CONCURRENCIA ---
+# Evita la sobrecarga de ejecuciones redundantes en GitHub Actions
+concurrency:
+  # Agrupa las ejecuciones según el nombre del workflow y la referencia (rama o PR)
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # Si subes un nuevo commit a la misma rama/PR mientras hay un build corriendo,
+  # cancela el build anterior y prioriza el más reciente. Ahorra tiempo y minutos de compute.
+  cancel-in-progress: true
+
+# --- FASE 3: PERMISOS DEL TOKEN ---
+# Aplica el principio de mínimo privilegio sobre el GitHub Token (`GITHUB_TOKEN`)
 permissions:
-  contents: read
+  contents: read # Solo otorga acceso de lectura al código fuente (seguridad de CI)
 
+# --- FASE 4: DEFINICIÓN DE JOBS (TAREAS) ---
 jobs:
   validate:
+    # Nombre visible de la tarea dentro de los Status Checks del PR.
+    # Este es el nombre que debes seleccionar en tu Branch Protection Rule / Ruleset.
     name: Validate project
+
+    # Entorno virtual de ejecución aislado (Runner hospedado por GitHub)
     runs-on: ubuntu-latest
 
+    # Secuencia de pasos que componen el Job
     steps:
+      # Paso 1: Descarga y sincronización del código fuente
+      # Clona el repositorio dentro del workspace de la máquina virtual del Runner
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Paso 2: Ejecución del Linter/Validador de HTML
+      # Ejecuta la acción de comunidad para validar el marcado HTML5 en la raíz
       - name: Validate HTML
         uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
