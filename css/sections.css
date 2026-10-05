@@ -247,9 +247,9 @@
   height: 43px;
 }
 
-.hero-node--cloud { left: 42%; top: 0; transform: translateX(-50%); }
+.hero-node--cloud { left: 50%; top: 0; transform: translateX(-50%); }
 .hero-node--server { left: 4%; top: 21%; }
-.hero-node--security { right: 4%; top: 21%; }
+.hero-node--security { right: 4%; top: 22%; }
 .hero-node--device { left: 0; bottom: 18%; }
 .hero-node--users { right: 0; bottom: 18%; }
 .hero-node--camera { left: 50%; bottom: 0; transform: translateX(-50%); }
