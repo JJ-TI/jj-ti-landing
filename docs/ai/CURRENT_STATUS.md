@@ -17,3 +17,7 @@ La rama implementa mejoras; no equivale a release aprobado. Backlog: #13–#21.
 No se han ratificado excepciones, roles de seguridad ni aprobación de producción. El validador ui-tokens-check sigue PLANNED/advisory en SEGAF. Las pruebas mock no envían correos reales.
 
 Evidencia: [validación local](../../reports/BASELINE-VALIDATION.md), 26/26 pruebas de navegador. No valida entrega de correo.
+
+## Revisión visual glass — #23
+
+IMPLEMENTED y TESTED localmente: paleta e Inter conservadas; paneles glass con fallback, tarjetas con gráficos propios, diseño de software en oferta, navegación, proyectos y formulario. 28/28 pruebas de navegador PASS y revisión responsive a 320, 390, 768, 820, 1024 y 1440 px. Ver reports/GLASS-REVIEW.md. La aprobación estética sigue pendiente del usuario.

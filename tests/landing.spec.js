@@ -156,3 +156,20 @@ test('timeout conserva datos y libera el formulario', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Solicitar diagnóstico' })).toBeEnabled();
   await expect(page.getByLabel('Empresa', { exact: true })).toHaveValue('Empresa de prueba');
 });
+
+
+test('diseño de software conserva la necesidad en la consulta', async ({ page }) => {
+  let received;
+  await page.route('https://formsubmit.co/ajax/**', async (route) => {
+    received = route.request().postDataJSON();
+    await route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":true}' });
+  });
+  await page.getByRole('link', { name: 'Hablemos de tu idea' }).click();
+  await expect(page.getByLabel('Plan de interés')).toHaveValue('Proyecto puntual');
+  await expect(page.getByLabel('Diseño de software', { exact: true })).toBeChecked();
+  await fillForm(page);
+  await page.getByRole('button', { name: 'Solicitar diagnóstico' }).click();
+  await expect(page.getByRole('status')).toContainText('El servicio aceptó');
+  expect(received.needs).toBe('Diseño de software');
+  expect(received.plan).toBe('Proyecto puntual');
+});

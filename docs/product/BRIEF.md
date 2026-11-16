@@ -6,7 +6,7 @@ Estado: PROPOSED, pendiente de revisión del propietario. Épica: #13.
 Convertir visitas de empresas de El Salvador en consultas atendibles en info@jj-ti.net. Mantener el sitio estático y aplicar SEGAF proporcionalmente.
 
 ## Alcance
-Formulario FormSubmit, planes seleccionables, accesibilidad básica, SEO, CI, documentación y backlog real. Conservar catálogo y nombres actuales. No agregar precios, horarios o SLA sin confirmación comercial (#21).
+Formulario FormSubmit, planes seleccionables, accesibilidad básica, SEO, CI, documentación y backlog real. Conservar la oferta TI e incorporar diseño de software por solicitud del usuario. La revisión visual del 2026-11-16 conserva colores y tipografía Inter y aplica material glass y gráficos propios. No agregar precios, horarios o SLA sin confirmación comercial (#21).
 
 ## Aceptación funcional
 - El plan consultado se conserva y permite cambios.
