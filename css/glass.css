@@ -245,3 +245,27 @@
 @media (max-width: 359px) {
   .problem-list { grid-template-columns: 1fr; }
 }
+
+/* Preferencias funcionales y páginas de servicio: misma identidad visual. */
+[hidden] { display: none !important; }
+.privacy-settings { border: 0; padding: 4px 0; background: transparent; color: inherit; text-decoration: underline; font-size: inherit; }
+.consent-panel { position: fixed; z-index: 210; right: 24px; bottom: 80px; width: min(470px, calc(100% - 40px)); padding: 22px; border: 1px solid var(--color-border); border-radius: 16px; background: var(--color-surface); box-shadow: var(--shadow-card); }
+.consent-panel p { font-size: .88rem; margin-bottom: 12px; }
+.consent-panel > div { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.consent-panel button { min-height: 42px; padding: 10px 14px; border: 1px solid var(--color-primary); border-radius: 8px; background: var(--color-surface); color: var(--color-primary); }
+.consent-panel a { color: var(--color-secondary); text-decoration: underline; font-size: .85rem; }
+.service-page-header { padding-block: 24px; border-bottom: 1px solid var(--color-border); }
+.service-page-header > div { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.service-detail { max-width: 900px; padding-block: 48px; }
+.service-detail nav { margin-bottom: 40px; font-size: .85rem; }
+.service-detail a:not(.button) { text-decoration: underline; color: var(--color-secondary); }
+.service-detail-lead { max-width: 720px; font-size: 1.12rem; }
+.service-detail section { padding-block: 36px; border-bottom: 1px solid var(--color-border); }
+.service-detail h2 { font-size: 1.65rem; }
+.service-detail li { margin-block: 12px; }
+.service-detail details { padding: 18px 0; }
+.service-detail summary { cursor: pointer; font-weight: 600; }
+.service-detail details p { margin-top: 16px; }
+.service-page-footer { padding-block: 32px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; font-size: .85rem; }
+
+html:not(.js-enabled) .privacy-settings { display: none; }

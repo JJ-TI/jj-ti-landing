@@ -1,0 +1,243 @@
+{
+  "uid": "jjti-web",
+  "title": "JJ-TI \u00b7 Salud y visitas consentidas",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Disponibilidad observada (sondas, no garant\u00eda SLA)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "probe_success",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Navegadores consentidos activos (90 s)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "jjti_active_browsers",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Solicitudes HTTP por segundo",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "targets": [
+        {
+          "expr": "sum by(route)(rate(jjti_http_requests_total[5m]))",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "Latencia p95 API",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95,sum by(le,route)(rate(jjti_http_request_duration_seconds_bucket[5m])))",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "title": "Errores HTTP 5xx",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "targets": [
+        {
+          "expr": "sum(rate(jjti_http_requests_total{status=~\"5..\"}[5m]))",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "title": "Cola de correo y avisos fallidos",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "targets": [
+        {
+          "expr": "{__name__=~\"jjti_mail_queue|jjti_mail_failed\"}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "title": "Visitas y tiempo visible por d\u00eda",
+      "type": "table",
+      "datasource": {
+        "type": "postgres",
+        "uid": "analytics"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawSql": "SELECT time,visits,browsers,visible_seconds FROM analytics_daily WHERE $__timeFilter(time) ORDER BY time",
+          "format": "table"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Secciones y enlaces de inter\u00e9s",
+      "type": "table",
+      "datasource": {
+        "type": "postgres",
+        "uid": "analytics"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawSql": "SELECT kind,target,sum(events) AS events FROM analytics_interests WHERE $__timeFilter(time) GROUP BY kind,target ORDER BY events DESC",
+          "format": "table"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Navegadores recurrentes (retenci\u00f3n 90 d\u00edas)",
+      "type": "table",
+      "datasource": {
+        "type": "postgres",
+        "uid": "analytics"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 32
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "rawSql": "SELECT browsers,returning_browsers FROM analytics_returning",
+          "format": "table"
+        }
+      ]
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "tags": [
+    "jjti",
+    "privacy-aware"
+  ],
+  "description": "Sesiones y navegadores no equivalen a personas o clientes identificados. Visible no demuestra atenci\u00f3n. SMTP aceptado no acredita entrega final."
+}

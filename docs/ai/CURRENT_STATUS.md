@@ -1,23 +1,20 @@
-# Estado real — Landing v2
+# Estado real — Funcionalidad y observabilidad
 
-La rama implementa mejoras; no equivale a release aprobado. Backlog: #13–#21.
+Épica #24; tareas #25–#29. Rama ai/chatgpt/24-production-observability, basada en el diseño de PR #22. El usuario pidió preparar despliegue reproducible y no ha seleccionado infraestructura.
 
-| Capacidad | Estado |
+| Capacidad | Estado y evidencia |
 |---|---|
-| Brief, ADR y manifiesto | PROPOSED; estructura validable, clasificación pendiente de revisión humana |
-| Formulario FormSubmit, planes, privacidad | IMPLEMENTED; proveedor requiere activación y comprobación de buzón (#15) |
-| Navegación, contraste y movimiento reducido | IMPLEMENTED y TESTED localmente; revisión manual completa pendiente |
-| Lint, pruebas y controles estáticos | IMPLEMENTED y TESTED localmente; ejecución remota se verifica en el PR |
-| SEO y contacto sin JS | IMPLEMENTED; origen de producción pendiente de confirmación |
-| Despliegue, rollback y monitorización productiva | PROPOSED, NOT_ASSESSED (#20) |
-| Oferta, testimonios y analítica | PROPOSED, pendiente de datos reales (#21) |
-| Evaluación PACA formal | NOT_ASSESSED; no hay puntuación ni certificación |
-| Vista previa Pages | ENABLED como preview en https://jj-ti.github.io/jj-ti-landing/; HTTP 200 y controles de preview verificados, sin modificar jj-ti.net |
+| Diseño glass, paleta e Inter | Conservados; revisión visual anterior #23 |
+| Navegación y páginas de servicios | IMPLEMENTED; enlaces/fragmentos/recursos validados y recorridos de navegador probados |
+| Registro durable, cifrado e idempotencia | IMPLEMENTED y TESTED con PostgreSQL real |
+| Worker SMTP, reintentos y dead letters | IMPLEMENTED y TESTED con servidor SMTP de laboratorio; no correo real a JJ-TI |
+| Analítica consentida y seudónima | IMPLEMENTED y TESTED: consentimiento, retirada, GPC, eventos, visitas entre pestañas, TTL y tiempo visible |
+| OpenTelemetry y Prometheus nativos | IMPLEMENTED y TESTED: métricas HTTP, logs/trazas enviados a receptor OTLP de laboratorio, sin PII evaluada |
+| Grafana/Prometheus/Collector/Loki/Tempo | Configuración y dashboards IMPLEMENTED; stack completo NO habilitado ni validado extremo a extremo localmente (límite de disco) |
+| Docker y gateway | Imagen API construida y Caddy adaptado; validación Compose PASS; configuración adicional se verifica en CI |
+| Backup/restore | TESTED en base aislada con datos sintéticos; custodiar claves y backups reales pendiente |
+| SEO y búsqueda con IA | HTML por servicio, JSON-LD, sitemap y llms.txt IMPLEMENTED y validados; ranking, indexación y citas NOT_ASSESSED |
+| Producción y notificaciones | PROPOSED; host, DNS/TLS real, SMTP real, destino de alertas, claves y aceptación humana pendientes |
+| PACA formal | NOT_ASSESSED; no puntuación ni certificación |
 
-No se han ratificado excepciones, roles de seguridad ni aprobación de producción. El validador ui-tokens-check sigue PLANNED/advisory en SEGAF. Las pruebas mock no envían correos reales.
-
-Evidencia: [validación local](../../reports/BASELINE-VALIDATION.md), 26/26 pruebas de navegador. No valida entrega de correo.
-
-## Revisión visual glass — #23
-
-IMPLEMENTED y TESTED localmente: paleta e Inter conservadas; paneles glass con fallback, tarjetas con gráficos propios, diseño de software en oferta, navegación, proyectos y formulario. 28/28 pruebas de navegador PASS y revisión responsive a 320, 390, 768, 820, 1024 y 1440 px. Ver reports/GLASS-REVIEW.md. La aprobación estética sigue pendiente del usuario.
+Evidencia: reports/FUNCTIONAL-READINESS.md y checks del PR. Preview Pages: solo frontend, sin envío ni analítica. No confundir preview con backend habilitado o pruebas de laboratorio con entrega al buzón.

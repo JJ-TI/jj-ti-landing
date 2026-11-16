@@ -1,0 +1,5 @@
+export const needs = ['Soporte TI', 'Redes / Infraestructura', 'Ciberseguridad', 'Microsoft 365 / Cloud', 'CCTV', 'Backup / Continuidad', 'Equipamiento', 'Automatización', 'Diseño de software', 'Otro'];
+export const plans = ['Por definir', 'Operación Esencial', 'Gestión Activa', 'Gestión Integral', 'Proyecto puntual'];
+export const sections = ['inicio', 'problema', 'soluciones', 'software', 'soporte', 'proyectos', 'proceso', 'diagnostico'];
+export const pages = ['inicio', 'privacidad', 'soporte-ti', 'diseno-software', 'infraestructura-redes', 'cloud-microsoft365', 'seguridad-continuidad', 'cctv'];
+export const actions = ['nav-inicio','nav-soluciones','nav-soporte','nav-software','nav-proyectos','nav-proceso','contact-diagnostico','contact-email','contact-phone','contact-whatsapp','plan-esencial','plan-activa','plan-integral','service-software','service-infraestructura','service-cloud','service-seguridad','service-cctv','service-soporte','privacy','privacy-settings','lead-start','lead-accepted','lead-error'];

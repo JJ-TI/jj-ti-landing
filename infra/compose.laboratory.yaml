@@ -1,0 +1,20 @@
+# Solo laboratorio: SMTP sintético sin TLS. No usar en producción.
+services:
+  gateway:
+    command: [caddy, reverse-proxy, --from, ':80', --to, 'api:3000']
+    ports: !override ["127.0.0.1:18080:80"]
+  api:
+    environment:
+      NODE_ENV: test
+      SMTP_HOST: mailpit
+      SMTP_PORT: '1025'
+      SMTP_ALLOW_PLAIN: 'true'
+      SMTP_FROM: web@example.com
+  grafana:
+    ports: !override ["127.0.0.1:13001:3000"]
+  prometheus:
+    ports: !override ["127.0.0.1:19090:9090"]
+  mailpit:
+    image: axllent/mailpit@sha256:aef2aacc11f075ec0fb6874275ee4a421e688e11a96ebb296134d1735c7761ce
+    networks: [web]
+    ports: ["127.0.0.1:18025:8025"]

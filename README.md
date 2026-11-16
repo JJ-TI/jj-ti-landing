@@ -1,39 +1,53 @@
-# JJ-TI — Landing v2
+# JJ-TI — Sitio y plataforma operativa
 
-Sitio estático de servicios tecnológicos para empresas de El Salvador. HTML, CSS y JS sin build de producción. [Backlog](docs/BACKLOG.md) · [Brief](docs/product/BRIEF.md) · [Operación](docs/operations/RUNBOOK.md) · [Estado real](docs/ai/CURRENT_STATUS.md).
+Frontend HTML/CSS/JS con diseño conservado, API Node 24/Fastify, PostgreSQL y observabilidad abierta. [Backlog](docs/BACKLOG.md) · [ADR-002](docs/architecture/adrs/ADR-002-production-observability.md) · [Producción](docs/operations/PRODUCTION.md) · [OpenAPI](docs/api/openapi.json) · [Estado](docs/ai/CURRENT_STATUS.md).
 
-## Desarrollo
+## Estado
 
-Requisitos: Node 22+, Python 3.12+, Chromium de Playwright.
+Implementación para revisión y despliegue reproducible. **No hay backend habilitado en Internet ni entrega real de correo verificada.** El usuario aún no elige infraestructura. La [vista previa Pages](https://jj-ti.github.io/jj-ti-landing/) es estática, sin analítica ni transmisión de formularios. GitHub Pages no ejecuta esta API.
+
+## Desarrollo y pruebas
+
+Requisitos: Node 24+, Python 3.12+, Docker y Chromium.
 
 ```bash
 npm ci
 python3 -m pip install -r requirements-dev.txt
 npx playwright install chromium
 npm run verify
-python3 -m http.server 8080
+npm run test:integration
+python3 scripts/check_secrets.py
 ```
 
-Si ya tienes Chromium del sistema, usa PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Las dependencias npm son solo de desarrollo; no se cargan en el sitio.
+El servidor estático Python solo permite revisar frontend; no recibe consultas. Para ensayar la recepción y analítica se necesita la API. Las pruebas de navegador interceptan peticiones; las pruebas de integración usan PostgreSQL real en contenedor y SMTP sintético local, sin correo a clientes.
 
-## Recepción
+## Producción reproducible
 
-Formulario configurado para FormSubmit → info@jj-ti.net, con errores recuperables y contexto de plan. Requiere activación del propietario del buzón y prueba real de entrega: [runbook](docs/operations/RUNBOOK.md). El envío mock en pruebas no habilita recepción productiva. WhatsApp: 50379124962, disponible también sin JS.
+```bash
+python3 scripts/setup_environment.py --origin https://jj-ti.net
+# Completar SMTP y custodiar secretos en .env, fuera de Git.
+python3 scripts/configure_monitoring.py --origin https://jj-ti.net
+docker compose config --quiet
+docker compose build api
+docker compose up -d
+```
 
-## Validación
+No ejecutar hasta seleccionar infraestructura y revisar [runbook](docs/operations/PRODUCTION.md). El Compose expone solo gateway público; Grafana y Prometheus quedan en loopback. Node corre sin root, recursos persistentes en volúmenes e imágenes base por digest. Los secretos y el cifrado del disco/backups deben gestionarse en el despliegue. La topología inicial es una instancia; escalado requiere límites de tasa compartidos.
 
-- npm run lint: ESLint, Stylelint y HTML Validate.
-- npm run check: manifiesto contra esquema SEGAF fijado, integridad del esquema y enlaces/recursos locales.
-- npm test: flujos de navegador y axe en escritorio/móvil, con proveedor interceptado (sin correo real).
-- CI ejecuta controles y escaneo de secretos; evidencias en cada PR. ui-tokens-check no se presenta como habilitado.
+## Funcionalidad
 
-## Publicación
+- Seis páginas estáticas por servicio, consultas con contexto, teléfono, correo, WhatsApp y enlaces comprobables.
+- Solicitud persistida y cifrada, referencia durable, idempotencia y outbox SMTP con reintentos. Aceptación SMTP no prueba entrega final.
+- Analítica de navegador opcional: consentimiento, GPC/DNT, visitas agrupadas entre pestañas, tiempo visible e intereses por eventos finitos. Retirada con borrado; nunca unir a formularios.
+- OpenTelemetry para métricas/trazas/logs, Collector OTLP, Prometheus/Blackbox, Grafana, Loki y Tempo. SQL de dashboards mediante rol de agregados, sin acceso a prospectos.
+- SEO HTML, JSON-LD coherente, canonical, sitemap y llms.txt complementario. No se promete posicionamiento o citas en IA.
 
-Para revisar el diseño sin publicar en el dominio comercial, hay una rama gh-pages con formulario deshabilitado. [Activar y actualizar la vista previa](docs/operations/PREVIEW.md). Vista previa disponible: https://jj-ti.github.io/jj-ti-landing/.
+## Estructura y publicación
 
-Archivos públicos: index.html, privacidad.html, gracias.html, favicon.svg, robots.txt, sitemap.xml, assets/, css/ y js/. No subir documentación, dependencias o pruebas al alojamiento. No se configura despliegue automático en este cambio. Origen propuesto: https://jj-ti.net/; confirmar antes de publicar.
+`node scripts/build_site.mjs` o `python3 scripts/build_site.py` crea `public/` con archivos permitidos. Solo este artefacto es público; no servir todo el repositorio. `server/` contiene API y contrato de datos; `infra/` el stack; `content/services.json` alimenta `python3 scripts/generate_services.py`.
 
-## Gobierno
+El preview se genera mediante `scripts/build_preview.py` con destino vacío. Su configuración impide recopilar analítica y el envío de consultas. SEO indexable corresponde al dominio final, no al preview.
 
-project.yaml v2 usa JSON válido como YAML 1.2 y referencia SEGAF por commit inmutable. La clasificación es PROPOSED y requiere revisión humana; validar esquema no aprueba riesgos ni roles. Revisar AGENTS.md y ADR-001. No se afirma cumplimiento PACA ni producción habilitada.
+## Gobernanza
 
+SEGAF por commit inmutable en project.yaml; evidencias dinámicas en reports/ y CI. Clasificación ampliada PROPOSED. Leer AGENTS.md. No se declara PASS PACA, aprobación de seguridad ni producción ENABLED sin evidencia externa.

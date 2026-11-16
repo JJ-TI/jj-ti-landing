@@ -3,7 +3,6 @@ on:
   push:
     branches: [main, develop]
   pull_request:
-    branches: [main, develop]
   workflow_dispatch:
 permissions: {}
 concurrency:
@@ -13,7 +12,7 @@ jobs:
   validate:
     name: Validate project
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     permissions:
       contents: read
     steps:
@@ -33,9 +32,13 @@ jobs:
         run: python3 scripts/build_preview.py --output "$RUNNER_TEMP/landing-preview"
       - run: npm audit --audit-level=high
       - name: Scan source for secrets
-        run: |
-          detect-secrets scan --all-files --exclude-files '(^|/)(\.git|node_modules|playwright-report|test-results)/' --exclude-secrets '^(b33555bdfb50fc558d73c4a96a0fc1264fd7d2df|fac8e8aae689b3457096655b165977086bf13510)$' > /tmp/secrets.json
-          python3 -c "import json; report=json.load(open('/tmp/secrets.json')); assert not report['results'], 'Potential secret locations (no values): ' + ', '.join(report['results'].keys())"
+        run: python3 scripts/check_secrets.py
+      - name: Real PostgreSQL and SMTP integration
+        run: npm run test:integration
+      - name: Validate infrastructure configuration
+        run: python3 scripts/validate_infra.py
+      - name: Container build
+        run: docker build -t jjti-web-api:ci .
       - run: npx playwright install --with-deps chromium
       - run: npm test
       - name: Browser evidence

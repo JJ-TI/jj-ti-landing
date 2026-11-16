@@ -1,0 +1,9 @@
+.git
+.env
+.env.*
+.runtime
+node_modules
+public
+_preview
+playwright-report
+test-results

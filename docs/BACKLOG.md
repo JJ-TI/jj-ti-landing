@@ -18,3 +18,7 @@ Flujo: issue abierto → PR enlazado → revisión → merge → verificación e
 P0: recepción y épica. P1: calidad, gobierno y preparación operativa. P2: SEO y decisiones comerciales. Responsable de coordinación: jagvortex-droid. Dependencias: #15 depende de activación del buzón y #20; #20 depende de CI y revisión; #21 depende de información comercial real.
 
 Revisión de diseño: #23 — estilo glass, tarjetas con gráficos propios e incorporación de diseño de software. Implementación en PR #22 y vista previa en Pages.
+
+## Funcionalidad y operación
+
+Épica #24: #25 API/SMTP, #26 analítica consentida, #27 observabilidad nativa, #28 enlaces/SEO/IA, #29 despliegue y evidencia. El diseño se conserva. Las capacidades se revisan en un PR separado y la habilitación externa sigue pendiente por decisión del usuario.
