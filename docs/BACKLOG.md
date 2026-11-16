@@ -26,3 +26,5 @@ Revisión de diseño: #23 — estilo glass, tarjetas con gráficos propios e inc
 P0 #31: seguridad y costos GCP antes de habilitar backend; host, IAM, perímetro, límites económicos y adaptación VM/Cloud Run. [Guía](operations/GCP-SECURITY.md). Controles PROPOSED, no infraestructura aplicada.
 
 Contenido #32: copy empresarial, CTA, software, microcopy y SEO conservando estructura y lógica. Rama ai/chatgpt/32-landing-copy, apilada sobre PR #30. Evaluación y evidencia: [LANDING-COPY](../reports/LANDING-COPY.md). No supone habilitación del backend ni mejora de conversión medida.
+
+Experimento #34: diagramas técnicos del mockup 01 + tarjetas editoriales del 03, exclusivamente en #problema. Rama ai/chatgpt/34-experimental-problem-visual sobre #33. Revisión visual pendiente; no reemplazar main. [Evidencia](../reports/PROBLEM-VISUAL-EXPERIMENT.md).
