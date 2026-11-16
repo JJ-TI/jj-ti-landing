@@ -114,6 +114,8 @@ test('menú móvil cierra con Escape, devuelve foco y desbloquea scroll', async 
 
 test('teclado permite saltar al contenido y respeta movimiento reducido', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
+  // Empezar una navegación limpia: beforeEach dejó el foco en consentimiento.
+  await page.reload();
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Saltar al contenido' })).toBeFocused();
   await page.keyboard.press('Enter');
