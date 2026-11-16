@@ -32,8 +32,8 @@ jobs:
       - run: npm audit --audit-level=high
       - name: Scan source for secrets
         run: |
-          detect-secrets scan --all-files --exclude-files '^(node_modules|playwright-report|test-results)/' --exclude-secrets '^(b33555bdfb50fc558d73c4a96a0fc1264fd7d2df|fac8e8aae689b3457096655b165977086bf13510)$' > /tmp/secrets.json
-          python3 -c "import json; report=json.load(open('/tmp/secrets.json')); assert not report['results'], 'Potential secrets detected; inspect locally without publishing findings'"
+          detect-secrets scan --all-files --exclude-files '(^|/)(\.git|node_modules|playwright-report|test-results)/' --exclude-secrets '^(b33555bdfb50fc558d73c4a96a0fc1264fd7d2df|fac8e8aae689b3457096655b165977086bf13510)$' > /tmp/secrets.json
+          python3 -c "import json; report=json.load(open('/tmp/secrets.json')); assert not report['results'], 'Potential secret locations (no values): ' + ', '.join(report['results'].keys())"
       - run: npx playwright install --with-deps chromium
       - run: npm test
       - name: Browser evidence
