@@ -12,7 +12,7 @@ La rama implementa mejoras; no equivale a release aprobado. Backlog: #13–#21.
 | Despliegue, rollback y monitorización productiva | PROPOSED, NOT_ASSESSED (#20) |
 | Oferta, testimonios y analítica | PROPOSED, pendiente de datos reales (#21) |
 | Evaluación PACA formal | NOT_ASSESSED; no hay puntuación ni certificación |
-| Vista previa Pages | IMPLEMENTED en gh-pages y verificada localmente; activación bloqueada por HTTP 403 de la integración |
+| Vista previa Pages | ENABLED como preview en https://jj-ti.github.io/jj-ti-landing/; HTTP 200 y controles de preview verificados, sin modificar jj-ti.net |
 
 No se han ratificado excepciones, roles de seguridad ni aprobación de producción. El validador ui-tokens-check sigue PLANNED/advisory en SEGAF. Las pruebas mock no envían correos reales.
 

@@ -1,17 +1,17 @@
 # Vista previa de diseño en GitHub Pages
 
-Estado: artefacto IMPLEMENTED en rama gh-pages; activación del sitio pendiente. No equivale a publicación en jj-ti.net ni aceptación del release.
+Estado: ENABLED como vista previa pública, verificada el 2026-11-16 en https://jj-ti.github.io/jj-ti-landing/. No equivale a publicación en jj-ti.net ni aceptación del release.
 
 ## Activación inicial
 
-El propietario debe abrir https://github.com/JJ-TI/jj-ti-landing/settings/pages y seleccionar:
+Si es necesario reconfigurar el sitio, el propietario puede abrir https://github.com/JJ-TI/jj-ti-landing/settings/pages y seleccionar:
 
 1. Source: Deploy from a branch.
 2. Branch: gh-pages.
 3. Folder: /(root).
 4. Save.
 
-La integración actual devuelve HTTP 403 al crear el sitio Pages. La rama ya está preparada. GitHub generará la URL https://jj-ti.github.io/jj-ti-landing/ cuando termine el despliegue; esta URL es la prevista, no una disponibilidad comprobada al escribir este documento.
+La solicitud inicial de activación devolvió HTTP 403. En la comprobación posterior GitHub ya reportó status=built, source=gh-pages y cname=null. Se verificó HTTP 200, banner, noindex y envío deshabilitado en https://jj-ti.github.io/jj-ti-landing/. No se atribuye la activación a una solicitud que fue rechazada.
 
 ## Contenido y actualización
 
