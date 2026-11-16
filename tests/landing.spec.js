@@ -14,6 +14,7 @@ test.beforeEach(async ({ page }) => {
   // Ninguna prueba puede enviar consultas, fuentes o telemetría a terceros.
   await page.route('https://**/*', (route) => route.abort());
   await page.goto('/');
+  await page.getByRole('button', { name: 'Rechazar o retirar' }).click();
 });
 
 test('cada plan conserva contexto y permite cambiarlo', async ({ page }) => {
@@ -29,7 +30,7 @@ test('cada plan conserva contexto y permite cambiarlo', async ({ page }) => {
 
 test('necesidades y consentimiento impiden envío vacío', async ({ page }) => {
   let requests = 0;
-  await page.route('https://formsubmit.co/**', (route) => { requests++; return route.abort(); });
+  await page.route('**/api/v1/leads', (route) => { requests++; return route.abort(); });
   await fillForm(page);
   await page.getByRole('button', { name: 'Solicitar diagnóstico' }).click();
   expect(requests).toBe(0);
@@ -42,25 +43,25 @@ test('necesidades y consentimiento impiden envío vacío', async ({ page }) => {
 
 test('POST aceptado contiene contexto y múltiples necesidades', async ({ page }) => {
   let received;
-  await page.route('https://formsubmit.co/ajax/info@jj-ti.net', async (route) => {
+  await page.route('**/api/v1/leads', async (route) => {
     received = route.request().postDataJSON();
-    await route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":"true"}' });
+    await route.fulfill({ status: 202, contentType: 'application/json', body: '{"reference":"df1f839a-35e1-4af1-8406-6bd2f7caf8d0","status":"queued"}' });
   });
   await page.locator('[data-plan="Gestión Activa"]').click();
   await fillForm(page);
   await page.getByLabel('CCTV', { exact: true }).check();
   await page.getByRole('button', { name: 'Solicitar diagnóstico' }).click();
-  await expect(page.getByRole('status')).toContainText('El servicio aceptó tu solicitud');
+  await expect(page.getByRole('status')).toContainText('Registramos tu solicitud');
   expect(received.plan).toBe('Gestión Activa');
-  expect(received.needs).toBe('Soporte TI, CCTV');
-  expect(received.reference).toMatch(/^JJTI-/);
+  expect(received.needs).toEqual(['Soporte TI', 'CCTV']);
+  expect(received.idempotency_key).toMatch(/^[a-f0-9-]{36}$/);
   await expect(page.getByLabel('Nombre', { exact: true })).toHaveValue('Consulta de prueba');
   await expect(page.getByRole('status')).not.toContainText('entregado');
 });
 
 for (const failure of ['network', 'http', 'provider', 'invalid-json']) {
   test(`error ${failure} conserva datos y permite reintento`, async ({ page }) => {
-    await page.route('https://formsubmit.co/ajax/**', async (route) => {
+    await page.route('**/api/v1/leads', async (route) => {
       if (failure === 'network') return route.abort();
       return route.fulfill({
         status: failure === 'http' ? 503 : 200,
@@ -74,9 +75,9 @@ for (const failure of ['network', 'http', 'provider', 'invalid-json']) {
     await expect(page.getByRole('status')).toContainText('No pudimos confirmar');
     await expect(page.getByLabel('Empresa', { exact: true })).toHaveValue('Empresa de prueba');
     await expect(page.getByRole('button', { name: 'Solicitar diagnóstico' })).toBeEnabled();
-    await page.route('https://formsubmit.co/ajax/**', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":true}' }));
+    await page.route('**/api/v1/leads', (route) => route.fulfill({ status: 202, contentType: 'application/json', body: '{"reference":"df1f839a-35e1-4af1-8406-6bd2f7caf8d0","status":"queued"}' }));
     await page.getByRole('button', { name: 'Solicitar diagnóstico' }).click();
-    await expect(page.getByRole('status')).toContainText('El servicio aceptó');
+    await expect(page.getByRole('status')).toContainText('Registramos tu solicitud');
   });
 }
 
@@ -84,10 +85,10 @@ test('no duplica solicitudes mientras el proveedor responde', async ({ page }) =
   let requests = 0;
   let release;
   const pending = new Promise((resolve) => { release = resolve; });
-  await page.route('https://formsubmit.co/ajax/**', async (route) => {
+  await page.route('**/api/v1/leads', async (route) => {
     requests++;
     await pending;
-    await route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":true}' });
+    await route.fulfill({ status: 202, contentType: 'application/json', body: '{"reference":"df1f839a-35e1-4af1-8406-6bd2f7caf8d0","status":"queued"}' });
   });
   await fillForm(page);
   await page.getByLabel('CCTV', { exact: true }).check();
@@ -96,7 +97,7 @@ test('no duplica solicitudes mientras el proveedor responde', async ({ page }) =
   await page.locator('form').evaluate((form) => form.dispatchEvent(new Event('submit', { cancelable: true })));
   expect(requests).toBe(1);
   release();
-  await expect(page.getByRole('status')).toContainText('El servicio aceptó');
+  await expect(page.getByRole('status')).toContainText('Registramos tu solicitud');
 });
 
 test('menú móvil cierra con Escape, devuelve foco y desbloquea scroll', async ({ page }) => {
@@ -113,6 +114,8 @@ test('menú móvil cierra con Escape, devuelve foco y desbloquea scroll', async 
 
 test('teclado permite saltar al contenido y respeta movimiento reducido', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
+  // Empezar una navegación limpia: beforeEach dejó el foco en consentimiento.
+  await page.reload();
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Saltar al contenido' })).toBeFocused();
   await page.keyboard.press('Enter');
@@ -125,7 +128,7 @@ test('sin JavaScript conserva contacto y POST nativo', async ({ browser, baseURL
   const page = await context.newPage();
   await page.route('https://**/*', (route) => route.abort());
   await page.goto(baseURL);
-  await expect(page.locator('form')).toHaveAttribute('action', 'https://formsubmit.co/info@jj-ti.net');
+  await expect(page.locator('form')).toHaveAttribute('action', 'api/v1/leads');
   await expect(page.locator('form')).toHaveAttribute('method', 'post');
   for (const link of await page.locator('a[href*="wa.me"]').all()) {
     await expect(link).toHaveAttribute('href', /wa.me\/50379124962/);
@@ -146,7 +149,7 @@ test('axe WCAG AA y página sin desbordamiento', async ({ page }, testInfo) => {
 
 test('timeout conserva datos y libera el formulario', async ({ page }) => {
   await page.clock.install();
-  await page.route('https://formsubmit.co/ajax/**', () => {});
+  await page.route('**/api/v1/leads', () => {});
   await fillForm(page);
   await page.getByLabel('CCTV', { exact: true }).check();
   await page.getByRole('button', { name: 'Solicitar diagnóstico' }).click();
@@ -160,16 +163,16 @@ test('timeout conserva datos y libera el formulario', async ({ page }) => {
 
 test('diseño de software conserva la necesidad en la consulta', async ({ page }) => {
   let received;
-  await page.route('https://formsubmit.co/ajax/**', async (route) => {
+  await page.route('**/api/v1/leads', async (route) => {
     received = route.request().postDataJSON();
-    await route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":true}' });
+    await route.fulfill({ status: 202, contentType: 'application/json', body: '{"reference":"df1f839a-35e1-4af1-8406-6bd2f7caf8d0","status":"queued"}' });
   });
   await page.getByRole('link', { name: 'Hablemos de tu idea' }).click();
   await expect(page.getByLabel('Plan de interés')).toHaveValue('Proyecto puntual');
   await expect(page.getByLabel('Diseño de software', { exact: true })).toBeChecked();
   await fillForm(page);
   await page.getByRole('button', { name: 'Solicitar diagnóstico' }).click();
-  await expect(page.getByRole('status')).toContainText('El servicio aceptó');
-  expect(received.needs).toBe('Diseño de software');
+  await expect(page.getByRole('status')).toContainText('Registramos tu solicitud');
+  expect(received.needs).toEqual(['Diseño de software']);
   expect(received.plan).toBe('Proyecto puntual');
 });

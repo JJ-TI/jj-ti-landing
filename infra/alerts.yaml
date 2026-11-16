@@ -1,0 +1,39 @@
+groups:
+  - name: jjti-web
+    rules:
+      - alert: JJTIUnavailable
+        expr: probe_success{job=~"site|ready"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: Sitio o preparación no disponible
+          runbook_url: https://github.com/JJ-TI/jj-ti-landing/blob/ai/chatgpt/24-production-observability/docs/operations/PRODUCTION.md
+      - alert: JJTIHighErrorRate
+        expr: sum(rate(jjti_http_requests_total{status=~"5.."}[5m])) / clamp_min(sum(rate(jjti_http_requests_total[5m])),0.001) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Más de 5% de respuestas con error
+      - alert: JJTIDatabaseUnavailable
+        expr: jjti_store_up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: Base de datos no disponible
+      - alert: JJTITelemetryUnavailable
+        expr: up{job="api"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: No se pueden recopilar métricas de la API
+      - alert: JJTICustomerRequestsDelayed
+        expr: jjti_mail_oldest_seconds > 600 or jjti_mail_failed > 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: Solicitudes con aviso de correo retrasado o fallido

@@ -15,8 +15,8 @@
     "network_exposure": "PUBLIC_INTERNET",
     "risk_tier": "MEDIUM",
     "domain_protection_level": "A1_STANDARD",
-    "size_profile": "S",
-    "technical_archetype": "frontend-app",
+    "size_profile": "M",
+    "technical_archetype": "fullstack-monorepo",
     "team_topology": "solo_with_ai",
     "platform_profile": "standard"
   },
@@ -26,7 +26,7 @@
   },
   "architecture": {
     "business_domain": "captacion-comercial",
-    "style": "static-site",
+    "style": "static-frontend-single-api",
     "adrs_path": "docs/architecture/adrs"
   },
   "exceptions": [],

@@ -35,10 +35,10 @@ class Page(HTMLParser):
                 self.links.append(values[attr])
 
 pages = {}
-for path in ROOT.glob("*.html"):
+for path in [*ROOT.glob("*.html"), *(ROOT / "servicios").glob("*.html")]:
     page = Page(path)
     page.feed(path.read_text())
-    pages[path.name] = page
+    pages[path.resolve()] = page
 
 for page in pages.values():
     for link in page.links:
@@ -49,5 +49,5 @@ for page in pages.values():
         assert target.is_relative_to(ROOT), f"Enlace fuera del proyecto: {link}"
         assert target.exists(), f"Recurso inexistente: {page.path.name} -> {link}"
         if parsed.fragment and target.suffix == ".html":
-            assert parsed.fragment in pages[target.name].ids, f"Fragmento inexistente: {link}"
+            assert parsed.fragment in pages[target].ids, f"Fragmento inexistente: {link}"
 print("PASS: esquema SEGAF y blob de origen; IDs, enlaces y recursos locales")

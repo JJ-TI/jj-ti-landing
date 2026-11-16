@@ -15,11 +15,11 @@ output.mkdir(parents=True, exist_ok=True)
 # Directorio exclusivo: evitar publicar archivos residuales de otra aplicación.
 if any(output.iterdir()):
     parser.error("El directorio de salida debe estar vacío; usa uno nuevo")
-for folder in ("assets", "css", "js"):
+for folder in ("assets", "css", "js", "servicios"):
     shutil.copytree(ROOT / folder, output / folder)
 for name in ("index.html", "privacidad.html", "gracias.html", "favicon.svg"):
     shutil.copy2(ROOT / name, output / name)
-for page in output.glob("*.html"):
+for page in output.rglob("*.html"):
     text = page.read_text().replace(
         "<head>", '<head>\n<meta name="robots" content="noindex,nofollow,noarchive">'
     )
@@ -31,8 +31,8 @@ for page in output.glob("*.html"):
         '<a href="https://github.com/JJ-TI/jj-ti-landing/issues/13">Backlog</a></aside>',
     )
     if page.name == "index.html":
-        text = text.replace('action="https://formsubmit.co/info@jj-ti.net"', 'action="#"')
-        text = text.replace('data-endpoint="https://formsubmit.co/ajax/info@jj-ti.net"', 'data-endpoint="#"')
+        text = text.replace('action="api/v1/leads"', 'action="#"')
+        text = text.replace('data-endpoint="/api/v1/leads"', 'data-endpoint="#"')
         text = text.replace('type="submit">Solicitar diagnóstico</button>',
                             'type="submit" disabled>Envío deshabilitado en vista previa</button>')
         text = text.replace('data-form-status></p>',
@@ -45,6 +45,7 @@ text = form.read_text()
 text = text[:text.index("  form.addEventListener('submit'")]
 text += "  form.addEventListener('submit', (event) => {\n    event.preventDefault();\n    setStatus('Vista previa de diseño: el envío está deshabilitado.', 'info');\n  });\n})();\n"
 form.write_text(text.replace("  let sending = false;\n", ""))
+(output / "js/config.js").write_text("window.JJTI_CONFIG = Object.freeze({apiBase: '', analyticsEnabled: false, preview: true});\n")
 (output / "robots.txt").write_text("User-agent: *\nDisallow: /\n")
 (output / ".nojekyll").write_text("")
 assert "fetch(" not in form.read_text(), "El preview no debe enviar formularios"
