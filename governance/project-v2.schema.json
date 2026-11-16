@@ -1,0 +1,269 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://segaf.internal/schemas/project-v2.schema.json",
+  "title": "SEGAF Project Governance Manifest Schema (v2.0)",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "classification",
+    "governance"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": ["2.0.0"]
+    },
+    "project": {
+      "type": "object",
+      "required": ["id", "name", "owner"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string",
+          "format": "uri"
+        },
+        "created_at": {
+          "type": "string"
+        }
+      }
+    },
+    "classification": {
+      "type": "object",
+      "required": [
+        "project_origin",
+        "engagement_model",
+        "business_criticality",
+        "data_sensitivity",
+        "network_exposure",
+        "risk_tier",
+        "domain_protection_level",
+        "size_profile",
+        "technical_archetype",
+        "team_topology",
+        "platform_profile"
+      ],
+      "properties": {
+        "project_origin": {
+          "type": "string",
+          "enum": ["NEW", "EXISTING", "LEGACY"]
+        },
+        "engagement_model": {
+          "type": "string",
+          "enum": ["internal-product", "client-project"]
+        },
+        "business_criticality": {
+          "type": "string",
+          "enum": ["MISSION_CRITICAL", "BUSINESS_CRITICAL", "INTERNAL_SUPPORT", "EXPERIMENTAL"]
+        },
+        "data_sensitivity": {
+          "type": "string",
+          "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "RESTRICTED_PII_FINANCIAL"]
+        },
+        "network_exposure": {
+          "type": "string",
+          "enum": ["AIRGAPPED", "INTERNAL_VPC", "PROTECTED_PARTNER", "PUBLIC_INTERNET"]
+        },
+        "risk_tier": {
+          "type": "string",
+          "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+        },
+        "domain_protection_level": {
+          "type": "string",
+          "enum": ["A0_ISOLATED", "A1_STANDARD", "B1_PROTECTED", "B2_REGULATED"]
+        },
+        "size_profile": {
+          "type": "string",
+          "enum": ["XS", "S", "M", "L", "XL"]
+        },
+        "technical_archetype": {
+          "type": "string",
+          "enum": [
+            "backend-service",
+            "frontend-app",
+            "fullstack-monorepo",
+            "data-pipeline",
+            "mobile-app",
+            "shared-library",
+            "cli-tool",
+            "cloud-infrastructure"
+          ]
+        },
+        "team_topology": {
+          "type": "string",
+          "enum": ["solo_with_ai", "single-team", "multi-team", "federated-enterprise"]
+        },
+        "platform_profile": {
+          "type": "string",
+          "enum": ["standard", "hardened", "regulated"]
+        }
+      }
+    },
+    "architecture": {
+      "type": "object",
+      "properties": {
+        "business_domain": {
+          "type": "string"
+        },
+        "style": {
+          "type": "string"
+        },
+        "target_paca_level": {
+          "type": "string"
+        },
+        "adrs_path": {
+          "type": "string"
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "required": ["modalidad", "primary_owner"],
+      "properties": {
+        "modalidad": {
+          "type": "string",
+          "enum": ["A", "B"]
+        },
+        "primary_owner": {
+          "type": "string"
+        },
+        "architecture_lead": {
+          "type": "string"
+        },
+        "security_lead": {
+          "type": "string"
+        },
+        "operations_lead": {
+          "type": "string"
+        }
+      }
+    },
+    "exceptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "status"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^EXC-[0-9]{4}-[0-9]{3,}$"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["DRAFT", "PENDING_REVIEW", "APPROVED", "REJECTED", "EXPIRED"]
+          },
+          "normative_owner": {
+            "type": "string",
+            "enum": ["BIZ", "ARCH", "SEH", "SEC", "OPS", "AIGH", "UIX", "DOC", "PMH"]
+          },
+          "standard_violated": {
+            "type": "string"
+          },
+          "target_rule_path": {
+            "type": "string"
+          },
+          "standard_value": {},
+          "requested_value": {},
+          "justification": {
+            "type": "string"
+          },
+          "compensating_control": {
+            "type": "string"
+          },
+          "change_approver": {
+            "type": "string"
+          },
+          "risk_owner": {
+            "type": "string"
+          },
+          "residual_risk_acceptance_authority": {
+            "type": "string"
+          },
+          "historical_approvals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "approved_by": { "type": "string" },
+                "approved_at": { "type": "string" },
+                "legacy_status": { "type": "string" },
+                "notes": { "type": "string" }
+              }
+            }
+          },
+          "approval_record": {
+            "type": "object",
+            "required": ["approved_by", "approved_at", "record_id", "content_sha256"],
+            "properties": {
+              "approved_by": { "type": "string" },
+              "approved_at": { "type": "string" },
+              "record_id": { "type": "string" },
+              "content_sha256": { "type": "string" }
+            }
+          },
+          "remediation": {
+            "type": "object",
+            "properties": {
+              "remediation_issue": { "type": "string" },
+              "target_date": { "type": "string" },
+              "expires_at": { "type": "string" },
+              "fallback_plan": { "type": "string" }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": { "status": { "const": "APPROVED" } },
+              "required": ["status"]
+            },
+            "then": {
+              "required": [
+                "normative_owner",
+                "change_approver",
+                "risk_owner",
+                "residual_risk_acceptance_authority",
+                "approval_record"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "migration_report": {
+      "type": "object",
+      "properties": {
+        "migrated_at": { "type": "string" },
+        "source_version": { "type": "string" },
+        "missing_fields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "requires_human_review": { "type": "boolean" },
+        "review_items": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "unmapped_fields_preserved": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

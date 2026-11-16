@@ -10,8 +10,11 @@
   /* Colores de marca */
   --color-primary: #191970;
   --color-primary-dark: #11114f;
-  --color-secondary: #4682B4;
+  --color-secondary: #35658D;
+  --color-whatsapp: #12823e;
+  --color-focus: #35658D;
   --color-accent: #D4AF37;
+  --color-accent-text: #806514;
   --color-cyan: #00FFFF;
 
   /* Superficies y texto */
@@ -58,3 +61,4 @@
   --transition-fast: 180ms ease;
   --transition-normal: 240ms ease;
 }
+

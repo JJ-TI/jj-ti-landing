@@ -49,13 +49,6 @@
   font-weight: 500
 }
 
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  font-size: .9rem;
-  font-weight: 500;
-}
 
 .main-nav a:not(.button) {
   position: relative;
@@ -278,7 +271,7 @@
   position: absolute;
   top: 24px;
   right: 24px;
-  color: #A1A1AA;
+  color: var(--color-text-secondary);
   font-size: .72rem;
   font-weight: 600;
 }

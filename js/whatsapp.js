@@ -11,7 +11,7 @@
 (() => {
   /**
    * Número de WhatsApp de JJ-TI en formato internacional sin `+`.
-   * Vacío por seguridad hasta que se configure el número comercial definitivo.
+   * Número comercial ya configurado; los enlaces HTML ofrecen fallback sin JS.
    */
   const phone = '50379124962';
 
@@ -28,3 +28,4 @@
     link.href = url;
   });
 })();
+

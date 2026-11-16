@@ -1,27 +1,8 @@
-# OS
-.DS_Store
-Thumbs.db
-
-# Editors / IDEs
-.vscode/
-.idea/
-
-# Logs
-*.log
-
-# Environment / secrets
+node_modules/
+_preview/
+playwright-report/
+test-results/
+__pycache__/
 .env
 .env.*
 !.env.example
-
-# Dependencies
-node_modules/
-
-# Build / distribution
-dist/
-build/
-
-# Temporary files
-*.tmp
-*.temp
-*.swp

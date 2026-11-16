@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "html-validate:recommended"
+  ],
+  "rules": {
+    "void-style": "off",
+    "wcag/h32": "off",
+    "svg/focusable": "off",
+    "long-title": "off",
+    "form-dup-name": [
+      "error",
+      {
+        "shared": [
+          "checkbox",
+          "radio"
+        ]
+      }
+    ]
+  }
+}
