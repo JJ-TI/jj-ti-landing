@@ -133,3 +133,6 @@ select:focus-visible {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+.preview-banner { padding: 12px 20px; background: #fff4c2; color: #191970; text-align: center; font: 600 14px/1.5 system-ui, sans-serif; }
+.preview-banner a { text-decoration: underline; }
