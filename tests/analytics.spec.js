@@ -35,11 +35,11 @@ test('GPC bloquea identificación incluso al intentar aceptar',async({page})=>{
 });
 test('cada tarjeta abre contenido estático y su consulta conserva servicio',async({page})=>{
  await page.goto('/');await page.getByRole('button',{name:'Rechazar o retirar'}).click();
- for(const [slug,title] of [['soporte-ti','Soporte y Gestión TI'],['diseno-software','Diseño de software'],['infraestructura-redes','Infraestructura y Redes'],['cloud-microsoft365','Cloud y Microsoft 365'],['seguridad-continuidad','Seguridad, Respaldo y Continuidad'],['cctv','CCTV y Videovigilancia']]){
+ for(const [slug,title] of [['soporte-ti','Soporte y Gestión TI'],['diseno-software','Desarrollo de software'],['infraestructura-redes','Infraestructura y Redes'],['cloud-microsoft365','Cloud y Microsoft 365'],['seguridad-continuidad','Seguridad, Respaldo y Continuidad'],['cctv','CCTV y Videovigilancia']]){
   await page.goto('/');await page.locator(`.services-grid a[href="servicios/${slug}.html"]`).click();
   await expect(page.getByRole('heading',{level:1})).toHaveText(title);
   const data=JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());expect(data['@graph'].some(x=>x['@type']==='Service')).toBe(true);
-  await page.getByRole('link',{name:'Consultar este servicio'}).click();await expect(page.getByLabel('Plan de interés')).toHaveValue('Proyecto puntual');
+  await page.getByRole('link',{name:'Consultar este servicio'}).click();await expect(page.getByLabel('Servicio o plan de interés')).toHaveValue('Proyecto puntual');
   await expect(page.locator('[name=needs]:checked')).toHaveCount(1);
  }
 });

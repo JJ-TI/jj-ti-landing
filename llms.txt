@@ -6,7 +6,7 @@
 
 - [Inicio](https://jj-ti.net/): oferta, planes y contacto.
 - [Soporte y Gestión TI](https://jj-ti.net/servicios/soporte-ti.html): Soporte TI para empresas en El Salvador: atención de incidentes, mantenimiento de equipos e inventario de recursos tecnológicos.
-- [Diseño de software](https://jj-ti.net/servicios/diseno-software.html): Diseño de software para empresas en El Salvador: análisis de procesos, prototipos, interfaces y definición de aplicaciones e integraciones a medida.
+- [Desarrollo de software](https://jj-ti.net/servicios/diseno-software.html): Desarrollo de software empresarial en El Salvador: aplicaciones web, sistemas internos, APIs RESTful e integraciones para automatizar procesos.
 - [Infraestructura y Redes](https://jj-ti.net/servicios/infraestructura-redes.html): Diseño y organización de redes, Wi-Fi, servidores y recursos tecnológicos para empresas en El Salvador.
 - [Cloud y Microsoft 365](https://jj-ti.net/servicios/cloud-microsoft365.html): Configuración de Microsoft 365, migración de información y administración de accesos para equipos de empresas en El Salvador.
 - [Seguridad, Respaldo y Continuidad](https://jj-ti.net/servicios/seguridad-continuidad.html): Evaluación de accesos, protección de equipos y planificación de respaldo y recuperación de información para empresas en El Salvador.
