@@ -16,7 +16,7 @@
   const phone = '50379124962';
 
   /** Mensaje inicial utilizado por los CTA de WhatsApp. */
-  const message = 'Hola, JJ-TI. Me gustaría conocer sus servicios porque necesito ayuda con tecnología para mi empresa.';
+  const message = 'Hola, JJ-TI. Quiero consultar una necesidad tecnológica de mi empresa. ¿Podemos conversar sobre el siguiente paso?';
 
   // Mientras el número esté vacío, dejamos los enlaces de demostración intactos.
   if (!phone) return;

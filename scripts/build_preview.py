@@ -33,7 +33,7 @@ for page in output.rglob("*.html"):
     if page.name == "index.html":
         text = text.replace('action="api/v1/leads"', 'action="#"')
         text = text.replace('data-endpoint="/api/v1/leads"', 'data-endpoint="#"')
-        text = text.replace('type="submit">Solicitar diagnóstico</button>',
+        text = text.replace('type="submit">Enviar mi consulta</button>',
                             'type="submit" disabled>Envío deshabilitado en vista previa</button>')
         text = text.replace('data-form-status></p>',
                             'data-form-status>Esta es una vista previa del diseño. El formulario no envía consultas.</p>')

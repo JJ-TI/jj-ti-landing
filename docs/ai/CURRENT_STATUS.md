@@ -18,3 +18,7 @@
 | PACA formal | NOT_ASSESSED; no puntuación ni certificación |
 
 Evidencia: reports/FUNCTIONAL-READINESS.md y checks del PR. Preview Pages: solo frontend, sin envío ni analítica. No confundir preview con backend habilitado o pruebas de laboratorio con entrega al buzón.
+
+## Iteración de contenido — #32
+
+Rama ai/chatgpt/32-landing-copy sobre PR #30. Copy revisado por sección: propuesta de valor, servicios/MSP, desarrollo de software, alcance de planes, proyectos, consultoría, proceso, CTA, formulario, WhatsApp y metadatos. Se conservan estructura, navegación, CSS, recursos gráficos, lógica de API y valores técnicos del formulario. Página de software y fuente/generador alineados; pruebas existentes adaptadas solo a etiquetas/mensajes. Evaluación editorial y evidencia en reports/LANDING-COPY.md. Sin resultados comerciales medidos ni producción habilitada.

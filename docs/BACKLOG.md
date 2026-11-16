@@ -24,3 +24,5 @@ Revisión de diseño: #23 — estilo glass, tarjetas con gráficos propios e inc
 Épica #24: #25 API/SMTP, #26 analítica consentida, #27 observabilidad nativa, #28 enlaces/SEO/IA, #29 despliegue y evidencia. El diseño se conserva. Las capacidades se revisan en un PR separado y la habilitación externa sigue pendiente por decisión del usuario.
 
 P0 #31: seguridad y costos GCP antes de habilitar backend; host, IAM, perímetro, límites económicos y adaptación VM/Cloud Run. [Guía](operations/GCP-SECURITY.md). Controles PROPOSED, no infraestructura aplicada.
+
+Contenido #32: copy empresarial, CTA, software, microcopy y SEO conservando estructura y lógica. Rama ai/chatgpt/32-landing-copy, apilada sobre PR #30. Evaluación y evidencia: [LANDING-COPY](../reports/LANDING-COPY.md). No supone habilitación del backend ni mejora de conversión medida.
