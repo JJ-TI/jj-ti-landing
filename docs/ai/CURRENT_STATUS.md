@@ -26,3 +26,5 @@ Rama ai/chatgpt/32-landing-copy sobre PR #30. Copy revisado por sección: propue
 ## Experimento visual — #34
 
 El usuario eligió combinar diagramas 01 con estilo editorial 03. Rama ai/chatgpt/34-experimental-problem-visual sobre #33. Solo #problema: SVG decorativos locales, números dorados, tarjetas claras y acentos navy/cyan. Copy aprobado y demás secciones intactos; sin cambios JS/API. Estado IMPLEMENTED y TESTED localmente (verify: 38/38); aceptación visual pendiente. Evidencia: reports/PROBLEM-VISUAL-EXPERIMENT.md. Preview aislado bajo experimental/problemas/, sin envío/analítica, no reemplaza la portada de Pages.
+
+Continuación #36 en la misma rama y PR #35: microinteracciones en botones, menú y formulario mediante css/interactions.css y js/interactions.js, cargados solo en la landing. Contenido, destinos, JS funcional y API conservados; script visual sin red/almacenamiento/lectura de datos. Validación y límites en reports/INTERACTIONS-EXPERIMENT.md. La referencia a 2027 es una dirección de diseño, no una predicción acreditada. Aceptación visual sigue pendiente.

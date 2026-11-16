@@ -1,0 +1,108 @@
+/* Experimento #36: respuesta visual progresiva; no sustituye estado ni validación. */
+.button,
+.nav-toggle {
+  position: relative;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 180ms cubic-bezier(.2, .75, .25, 1), box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+.button { overflow: hidden; }
+.button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120px circle at var(--pointer-x, 50%) var(--pointer-y, 50%), rgba(255, 255, 255, .3), transparent 75%);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+.button:focus-visible,
+.nav-toggle:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+}
+.button:disabled,
+.button[aria-disabled="true"] { transform: none; cursor: not-allowed; box-shadow: none; }
+.button:disabled::before,
+.button[aria-disabled="true"]::before { display: none; }
+.main-nav a:not(.button)::after { transform-origin: left; }
+.main-nav a:not(.button):focus-visible::after { transform: scaleX(1); }
+.nav-toggle { min-width: 44px; min-height: 44px; border-radius: 12px; }
+.nav-toggle > span:not(.sr-only) { transition: transform 180ms ease, opacity 120ms ease; }
+.nav-toggle[aria-expanded="true"] > span:nth-child(2) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] > span:nth-child(3) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] > span:nth-child(4) { transform: translateY(-7px) rotate(-45deg); }
+
+.diagnosis-form { position: relative; transition: border-color 180ms ease, box-shadow 180ms ease; }
+.diagnosis-form:focus-within { border-color: rgba(70, 130, 180, .55); box-shadow: 0 14px 38px rgba(25, 25, 112, .09); }
+.diagnosis-form .field :is(input, textarea, select) { transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease; }
+.diagnosis-form .field :is(input, textarea, select):focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 4px rgba(70, 130, 180, .1);
+}
+.diagnosis-form .field:focus-within > label { color: var(--color-primary); }
+.diagnosis-form .field :is(input, textarea, select):user-invalid { border-color: var(--color-error); background-color: #fffafa; }
+.diagnosis-form .field :is(input, textarea, select):user-valid:not(:focus) { border-color: #729a91; }
+.diagnosis-form .check-grid { gap: 8px; }
+.diagnosis-form .check-grid label {
+  min-height: 44px;
+  padding: 9px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+.diagnosis-form .check-grid label:has(:checked) { background: #f0f4fb; border-color: var(--color-primary); color: var(--color-primary); }
+.diagnosis-form .check-grid label:has(:focus-visible) { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+.diagnosis-form .check-grid input { flex-shrink: 0; }
+.diagnosis-form .privacy-consent:has(:focus-visible) { outline: 2px solid var(--color-primary); outline-offset: 4px; border-radius: 4px; }
+.diagnosis-form[aria-busy="true"] { border-color: var(--color-secondary); }
+.diagnosis-form[aria-busy="true"] .button { cursor: progress; }
+.diagnosis-form .form-status:not(:empty) { padding: 12px; border: 1px solid currentColor; border-radius: 10px; background: #f8fafc; }
+.diagnosis-form .form-status.is-error { background: #fffafa; }
+.diagnosis-form .form-status.is-success { background: #f4faf7; }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .button:not(:disabled, [aria-disabled="true"]):hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(25, 25, 112, .16); }
+  .button:not(:disabled, [aria-disabled="true"]):hover::before { opacity: 1; }
+  .nav-toggle:hover { background: rgba(70, 130, 180, .08); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .button:not(:disabled, [aria-disabled="true"]):active { transform: translateY(0) scale(.985); }
+  .nav-toggle:active { transform: scale(.95); }
+  @starting-style {
+    .diagnosis-form .form-status:not(:empty) { opacity: .4; }
+  }
+  .diagnosis-form .form-status { transition: opacity 180ms ease, background-color 180ms ease; }
+}
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  .main-nav.is-open { animation: menu-reveal 180ms cubic-bezier(.2, .75, .25, 1) both; }
+}
+@keyframes menu-reveal {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button::before,
+  .nav-toggle,
+  .nav-toggle > span:not(.sr-only),
+  .main-nav,
+  .main-nav a::after,
+  .diagnosis-form,
+  .diagnosis-form .field :is(input, textarea, select),
+  .diagnosis-form .check-grid label,
+  .diagnosis-form .form-status { animation: none; transition: none; }
+  .button:hover,
+  .button:active,
+  .nav-toggle:active { transform: none; }
+  .button::before { display: none; }
+}
+@media (forced-colors: active) {
+  .button::before { display: none; }
+  .diagnosis-form .check-grid label:has(:checked) { outline: 2px solid Highlight; }
+}
