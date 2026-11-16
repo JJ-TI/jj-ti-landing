@@ -2,6 +2,8 @@
 
 Estado: código y laboratorio separables de ENABLED. El alojamiento sigue sin decidirse. No hay despliegue externo autorizado ni credenciales reales de SMTP en el repositorio.
 
+GCP es un escenario probable, sin plataforma elegida. La seguridad del host/red/IAM y el control de consumo no se dan por resueltos por usar un contenedor o un servicio administrado. Cumplir la [guía GCP](GCP-SECURITY.md) y la issue #31 antes de habilitar. Compose no acredita hardening del host ni protección DDoS; Cloud Run requiere adaptación y no ejecuta este stack sin cambios.
+
 ## Preparar un host
 
 1. Elegir host, dominio y responsable. Verificar compatibilidad Docker Compose actual, recursos, puertos 80/443, DNS y discos cifrados. El stack completo requiere dimensionamiento; no se presupone un VPS mínimo ni alta disponibilidad.
