@@ -20,8 +20,8 @@
   document.querySelectorAll('[data-plan]').forEach((link) => {
     link.addEventListener('click', () => {
       plan.value = link.dataset.plan;
-      const support = needs.find((input) => input.value === 'Soporte TI');
-      if (support) support.checked = true;
+      const selectedNeed = needs.find((input) => input.value === (link.dataset.need || 'Soporte TI'));
+      if (selectedNeed) selectedNeed.checked = true;
       validateNeeds();
       setStatus(`Consulta sobre ${plan.value}. Puedes cambiar el plan antes de enviar.`, 'info');
     });
