@@ -1,56 +1,37 @@
-# JJ-TI — Landing MVP v1
+# JJ-TI — Landing v2
 
-Landing MVP para **JJ-TI — Soluciones Tecnológicas**.
+Sitio estático de servicios tecnológicos para empresas de El Salvador. HTML, CSS y JS sin build de producción. [Backlog](docs/BACKLOG.md) · [Brief](docs/product/BRIEF.md) · [Operación](docs/operations/RUNBOOK.md) · [Estado real](docs/ai/CURRENT_STATUS.md).
 
-## Stack
-- HTML5 semántico
-- CSS3
-- JavaScript vanilla
-- Inter vía Google Fonts
+## Desarrollo
 
-No requiere framework ni build para esta primera versión.
-
-## Ejecutar localmente
-
-Puedes abrir `index.html` directamente, o usar un servidor local:
+Requisitos: Node 22+, Python 3.12+, Chromium de Playwright.
 
 ```bash
-python -m http.server 8080
+npm ci
+python3 -m pip install -r requirements-dev.txt
+npx playwright install chromium
+npm run verify
+python3 -m http.server 8080
 ```
 
-Luego visita `http://localhost:8080`.
+Si ya tienes Chromium del sistema, usa PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium. Las dependencias npm son solo de desarrollo; no se cargan en el sitio.
 
-## Estructura
+## Recepción
 
-```text
-jj-ti-landing/
-├── index.html
-├── assets/
-│   ├── images/
-│   ├── icons/
-│   └── logo/
-├── css/
-│   ├── variables.css
-│   ├── base.css
-│   ├── components.css
-│   ├── sections.css
-│   └── responsive.css
-├── js/
-│   ├── main.js
-│   ├── navigation.js
-│   ├── form.js
-│   └── whatsapp.js
-└── README.md
-```
+Formulario configurado para FormSubmit → info@jj-ti.net, con errores recuperables y contexto de plan. Requiere activación del propietario del buzón y prueba real de entrega: [runbook](docs/operations/RUNBOOK.md). El envío mock en pruebas no habilita recepción productiva. WhatsApp: 50379124962, disponible también sin JS.
 
-## Pendiente para v2
-1. Logo oficial y favicon.
-2. Número real de WhatsApp en `js/whatsapp.js`.
-3. Backend/servicio para recibir el formulario.
-4. Imágenes definitivas.
-5. SEO técnico adicional: canonical, Open Graph image, Schema.org, sitemap y robots.
-6. Auditoría de accesibilidad y rendimiento.
-7. Despliegue.
+## Validación
 
-## Principios
-Separación de responsabilidades, variables centralizadas, componentes reutilizables, JavaScript modular, HTML semántico, responsive-first, accesibilidad, SEO y dependencias mínimas.
+- npm run lint: ESLint, Stylelint y HTML Validate.
+- npm run check: manifiesto contra esquema SEGAF fijado, integridad del esquema y enlaces/recursos locales.
+- npm test: flujos de navegador y axe en escritorio/móvil, con proveedor interceptado (sin correo real).
+- CI ejecuta controles y escaneo de secretos; evidencias en cada PR. ui-tokens-check no se presenta como habilitado.
+
+## Publicación
+
+Archivos públicos: index.html, privacidad.html, gracias.html, favicon.svg, robots.txt, sitemap.xml, assets/, css/ y js/. No subir documentación, dependencias o pruebas al alojamiento. No se configura despliegue automático en este cambio. Origen propuesto: https://jj-ti.net/; confirmar antes de publicar.
+
+## Gobierno
+
+project.yaml v2 usa JSON válido como YAML 1.2 y referencia SEGAF por commit inmutable. La clasificación es PROPOSED y requiere revisión humana; validar esquema no aprueba riesgos ni roles. Revisar AGENTS.md y ADR-001. No se afirma cumplimiento PACA ni producción habilitada.
+

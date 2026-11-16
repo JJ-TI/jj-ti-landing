@@ -41,7 +41,15 @@
   });
 
   // Al pasar a escritorio no necesitamos conservar el estado móvil.
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navigation.classList.contains('is-open')) {
+      closeMenu();
+      toggleButton.focus();
+    }
+  });
+
   window.addEventListener('resize', () => {
     if (window.innerWidth > 767) closeMenu();
   });
 })();
+

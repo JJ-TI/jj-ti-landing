@@ -1,59 +1,45 @@
-
-# Nombre descriptivo del workflow que aparece en la pestaña "Actions" de GitHub
 name: CI
-
-# --- FASE 1: ACTIVADORES (TRIGGERS) ---
-# Define los eventos del repositorio que desencadenan la ejecución del workflow
 on:
-  # Se ejecuta cuando se realiza un 'push' directo a las ramas integradas.
-  # Garantiza la integridad del código al momento de fusionarse.
   push:
-    branches:
-      - main
-      - develop
-
-  # Se ejecuta cuando se abre, actualiza o reabre un Pull Request hacia las ramas destino.
-  # Permite validar los cambios propuestos ANTES de permitir el merge.
+    branches: [main, develop]
   pull_request:
-    branches:
-      - main
-      - develop
-    types: [opened, synchronize, reopened]
-
-# --- FASE 2: CONTROL DE CONCURRENCIA ---
-# Evita la sobrecarga de ejecuciones redundantes en GitHub Actions
+    branches: [main, develop]
+  workflow_dispatch:
+permissions: {}
 concurrency:
-  # Agrupa las ejecuciones según el nombre del workflow y la referencia (rama o PR)
   group: ${{ github.workflow }}-${{ github.ref }}
-  # Si subes un nuevo commit a la misma rama/PR mientras hay un build corriendo,
-  # cancela el build anterior y prioriza el más reciente. Ahorra tiempo y minutos de compute.
   cancel-in-progress: true
-
-# --- FASE 3: PERMISOS DEL TOKEN ---
-# Aplica el principio de mínimo privilegio sobre el GitHub Token (`GITHUB_TOKEN`)
-permissions:
-  contents: read # Solo otorga acceso de lectura al código fuente (seguridad de CI)
-
-# --- FASE 4: DEFINICIÓN DE JOBS (TAREAS) ---
 jobs:
   validate:
-    # Nombre visible de la tarea dentro de los Status Checks del PR.
-    # Este es el nombre que debes seleccionar en tu Branch Protection Rule / Ruleset.
     name: Validate project
-
-    # Entorno virtual de ejecución aislado (Runner hospedado por GitHub)
     runs-on: ubuntu-latest
-
-    # Secuencia de pasos que componen el Job
+    timeout-minutes: 15
+    permissions:
+      contents: read
     steps:
-      # Paso 1: Descarga y sincronización del código fuente
-      # Clona el repositorio dentro del workspace de la máquina virtual del Runner
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # Paso 2: Ejecución del Linter/Validador de HTML
-      # Ejecuta la acción de comunidad para validar el marcado HTML5 en la raíz
-      - name: Validate HTML
-        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          root: .
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c
+        with:
+          python-version: '3.12'
+      - run: npm ci --ignore-scripts
+      - run: python3 -m pip install -r requirements-dev.txt
+      - run: npm run lint
+      - run: npm run check
+      - run: npm audit --audit-level=high
+      - name: Scan source for secrets
+        run: |
+          detect-secrets scan --all-files --exclude-files '^(node_modules|playwright-report|test-results)/' --exclude-secrets '^(b33555bdfb50fc558d73c4a96a0fc1264fd7d2df|fac8e8aae689b3457096655b165977086bf13510)$' > /tmp/secrets.json
+          python3 -c "import json; report=json.load(open('/tmp/secrets.json')); assert not report['results'], 'Potential secrets detected; inspect locally without publishing findings'"
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      - name: Browser evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: browser-test-report
+          path: playwright-report/
+          retention-days: 7
