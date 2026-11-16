@@ -29,6 +29,8 @@ Formulario configurado para FormSubmit → info@jj-ti.net, con errores recuperab
 
 ## Publicación
 
+Para revisar el diseño sin publicar en el dominio comercial, hay una rama gh-pages con formulario deshabilitado. [Activar y actualizar la vista previa](docs/operations/PREVIEW.md). La activación requiere la configuración Pages del propietario.
+
 Archivos públicos: index.html, privacidad.html, gracias.html, favicon.svg, robots.txt, sitemap.xml, assets/, css/ y js/. No subir documentación, dependencias o pruebas al alojamiento. No se configura despliegue automático en este cambio. Origen propuesto: https://jj-ti.net/; confirmar antes de publicar.
 
 ## Gobierno

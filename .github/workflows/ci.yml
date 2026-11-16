@@ -29,6 +29,8 @@ jobs:
       - run: python3 -m pip install -r requirements-dev.txt
       - run: npm run lint
       - run: npm run check
+      - name: Build isolated design preview
+        run: python3 scripts/build_preview.py --output "$RUNNER_TEMP/landing-preview"
       - run: npm audit --audit-level=high
       - name: Scan source for secrets
         run: |
