@@ -11,7 +11,11 @@
     root.classList.add('theme-changing');
     if (cleanup !== null) cancelAnimationFrame(cleanup);
     root.dataset.theme = preference === 'system' ? (system.matches ? 'dark' : 'light') : preference;
-    document.querySelectorAll('[data-theme-select]').forEach(select => { select.value = preference; });
+    document.querySelectorAll('[data-theme-toggle]').forEach(button => {
+      const dark = root.dataset.theme === 'dark';
+      button.setAttribute('aria-pressed', String(dark));
+      button.title = dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+    });
     cleanup = requestAnimationFrame(() => {
       cleanup = requestAnimationFrame(() => { root.classList.remove('theme-changing'); cleanup = null; });
     });
@@ -20,10 +24,10 @@
   };
   apply();
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-theme-select]').forEach(select => {
-      select.closest('.theme-control').hidden = false;
-      select.addEventListener('change', () => {
-        preference = valid(select.value);
+    document.querySelectorAll('[data-theme-toggle]').forEach(button => {
+      button.hidden = false;
+      button.addEventListener('click', () => {
+        preference = root.dataset.theme === 'dark' ? 'light' : 'dark';
         try {
           if (preference === 'system') localStorage.removeItem(key);
           else localStorage.setItem(key, preference);

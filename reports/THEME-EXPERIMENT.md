@@ -20,3 +20,9 @@ No se modifican API, payload, idempotencia, envío, consentimiento o backend. Nu
 Validación final en curso: npm run verify (incluye 6 escenarios de tema añadidos a los 38 existentes), revisión de capturas y preview aislado. Primer intento paralelo de suites compartió directorio de artefactos y produjo ENOENT; se repite en una sola ejecución. Prueba inicial de contraste detectó transición de colores no sincronizada; corregida antes de la ejecución final. No se presentan esos intentos como PASS.
 
 Capturas de tema oscuro revisadas; mediciones de ancho 1440/1024/768/390/320 sin overflow. Preview experimental/problemas mantiene noindex, formulario y analítica desactivados; portada principal preservada. No implica certificación WCAG ni comprobación exhaustiva en todos los navegadores.
+
+## Refinamiento #38 — botón de tema
+
+El usuario aprobó el tema y la franja, y pidió sustituir únicamente el selector. Botón sol/luna, objetivo 44×44 px, esquinas de 13 px, colores de marca, foco visible, título que anuncia la acción y aria-pressed con nombre estable «Modo oscuro». La primera visita sigue al sistema; sin preferencia manual responde a sus cambios. Cada pulsación alterna y guarda light/dark, también al navegar. Storage bloqueado conserva funcionamiento en la página. No se fuerza un modo fijo por defecto ni se borra una elección anterior del usuario.
+
+Se conserva preferencia v1 para usuarios del experimento anterior. Ya no hay opción Sistema en la interfaz; borrar esa preferencia del navegador restablece seguimiento automático. Privacidad actualizada. Las pruebas existentes de tema verifican alternancia, estado accesible, sistema, persistencia, navegación, storage bloqueado y contraste. Resultado final por SHA en comentario de PR/checks. No modifica envío ni backend.
