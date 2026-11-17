@@ -9,3 +9,7 @@ Archivos de producto: css/theme.css, css/interactions.css y js/navigation.js (so
 Verificación local de geometría: 1440/1280/1150/1024/1023/768/390/320 sin overflow; navegación separada de la marca en escritorio. Recorrido tablet→escritorio comprobó cierre y desbloqueo de scroll. Capturas de escritorio y menú móvil revisadas. npm run verify y CI: ver resultado final en checks/comentario del PR; no se presenta resultado pendiente como aprobado.
 
 Preview aislado experimental/problemas; portada estable conservada. Revisión visual pendiente. Sin cambios de infraestructura ni backend.
+
+## Ajuste de amplitud solicitado
+
+Solo desde 1024 px: .site-header .header__inner pasa a máximo 1320 px con márgenes mínimos de 24 px. En viewport de 1440 px, los márgenes pasan de 120 a 60 px; logo y conjunto menú/tema se acercan 60 px a sus respectivos extremos. Por debajo de 1024 px la regla no aplica. No cambia HTML, JS, cuerpo, tipografía, distancias entre enlaces o altura. La comprobación final se registra por SHA en el PR #35.

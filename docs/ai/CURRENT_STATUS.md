@@ -34,3 +34,5 @@ Continuación #37: tema Sistema/Claro/Oscuro en landing, servicios, privacidad y
 #38 sustituye el select de #37 por un botón sol/luna de 44 px, alineado al menú, con aria-pressed y foco visible. Sin elección guardada sigue al sistema; cada pulsación alterna y recuerda preferencia. Generador, servicios, privacidad y confirmación alineados. Validación final en checks del PR #35; aceptación visual pendiente.
 
 #39 reorganiza exclusivamente espaciado/presentación de cabecera: navegación con margen automático tras la marca, enlaces separados, CTA y tema con espacio propio. Hasta 1023 px usa panel flotante; navegación JS y animación coinciden con ese breakpoint. HTML/copy/destinos y lógica de formulario/tema intactos. Ver reports/HEADER-SPACING.md y checks del PR #35.
+
+Refinamiento adicional de #39: contenedor de cabecera de escritorio ampliado de 1200 a 1320 px, conservando márgenes mínimos de 24 px. A 1440 px acerca marca y controles 60 px hacia cada extremo. No cambia contenedor de contenido ni móvil/tablet.
