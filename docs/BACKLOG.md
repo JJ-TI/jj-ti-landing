@@ -38,3 +38,5 @@ Refinamiento #38: selector sustituido por botón sol/luna junto al menú; sistem
 Cabecera #39: espacio independiente para marca/navegación/tema, panel flotante en móvil/tablet y breakpoint coherente de 1023 px. Misma rama experimental/PR #35; evidencia en reports/HEADER-SPACING.md.
 
 Footer #40: definición visual de marca/soluciones/contacto/redes, SVG locales y perfiles sociales pendientes sin URLs ficticias. WhatsApp usa contacto existente. Misma rama experimental/PR #35; revisión visual pendiente.
+
+Software visual #41: enriquecer #software con diagrama propio y etapas conectadas sin alterar copy/CTA; misma rama/PR #35. Evidencia reports/SOFTWARE-VISUAL.md.

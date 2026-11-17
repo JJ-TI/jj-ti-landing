@@ -38,3 +38,5 @@ Continuación #37: tema Sistema/Claro/Oscuro en landing, servicios, privacidad y
 Refinamiento adicional de #39: contenedor de cabecera de escritorio ampliado de 1200 a 1320 px, conservando márgenes mínimos de 24 px. A 1440 px acerca marca y controles 60 px hacia cada extremo. No cambia contenedor de contenido ni móvil/tablet.
 
 #40: footer de landing con cuatro áreas claras, paleta navy/dorado, enlaces reales a servicios/contacto, privacidad/preferencias y presencia visual de LinkedIn, Instagram, Facebook y TikTok pendiente de cuentas. Esas cuatro redes son contenido no interactivo, no enlaces vacíos. WhatsApp conserva número existente. CSS aislado en css/footer.css, sin nuevas dependencias ni cambios de API. Detalle: reports/FOOTER-EXPERIMENT.md.
+
+#41: presentación de #software enriquecida con diagrama vectorial decorativo de proceso/interfaz/integraciones y etapas conectadas. Copy, CTA/atributos, JS y resto del HTML conservados (salvo referencia CSS). CSS aislado, temas y responsive. Evidencia reports/SOFTWARE-VISUAL.md; aceptación visual pendiente en misma rama/PR #35.
