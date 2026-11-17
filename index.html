@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-SV">
 <head>
+<script src="js/theme.js"></script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Soporte técnico empresarial, desarrollo de software a medida, redes, ciberseguridad y cloud en El Salvador. Consulta una solución para tu empresa.">
 <meta name="theme-color" content="#191970"><meta property="og:title" content="JJ-TI | Gestión TI y software para empresas"><meta property="og:description" content="Administramos tu entorno tecnológico y desarrollamos soluciones para conectar sistemas, automatizar procesos y acompañar la evolución de tu empresa."><meta property="og:type" content="website">
@@ -21,6 +22,7 @@
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/glass.css">
 <link rel="stylesheet" href="css/interactions.css">
+<link rel="stylesheet" href="css/theme.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://jj-ti.net/#organization", "name": "JJ-TI — Soluciones Tecnológicas", "url": "https://jj-ti.net/", "email": "info@jj-ti.net", "telephone": "+50379124962", "areaServed": {"@type": "Country", "name": "El Salvador"}}, {"@type": "WebSite", "@id": "https://jj-ti.net/#website", "url": "https://jj-ti.net/", "name": "JJ-TI — Soluciones Tecnológicas", "inLanguage": "es-SV", "publisher": {"@id": "https://jj-ti.net/#organization"}}]}</script>
 </head>
 <body data-page="inicio">
@@ -69,6 +71,7 @@
 
 <header class="site-header" data-header><div class="container header__inner">
 <a class="brand" href="#inicio" aria-label="JJ-TI, inicio" data-track="nav-inicio"><span class="brand__mark">JJ-TI</span><span class="brand__text">Soluciones Tecnológicas</span></a>
+<label class="theme-control" hidden><span class="sr-only">Apariencia</span><select aria-label="Apariencia" data-theme-select><option value="system">Sistema</option><option value="light">Claro</option><option value="dark">Oscuro</option></select></label>
 <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" data-nav-toggle><span class="sr-only">Abrir menú</span><span></span><span></span><span></span></button>
 <nav class="main-nav" id="main-navigation" aria-label="Navegación principal" data-navigation><a href="#soluciones" data-track="nav-soluciones">Soluciones</a><a href="#soporte" data-track="nav-soporte">Soporte TI</a><a href="#software" data-track="nav-software">Software</a><a href="#proyectos" data-track="nav-proyectos">Proyectos</a><a href="#proceso" data-track="nav-proceso">Cómo trabajamos</a><a class="button button--small button--primary" href="#diagnostico" data-track="contact-diagnostico">Consultar mi necesidad</a></nav>
 </div></header>
@@ -103,7 +106,7 @@
     <div class="hero-node hero-node--camera"><span class="hero-node__icon"><svg><use href="#icon-hero-camera"></use></svg></span><span>CCTV</span></div>
   </div>
 </div></div></section>
-<section class="specialties"><div class="container specialties__inner"><span>Soporte empresarial</span><span>Desarrollo de software</span><span>Infraestructura TI</span><span>Cloud</span><span>Ciberseguridad</span></div></section>
+<section class="specialties"><div class="container specialties__inner"><a class="specialty-link" href="servicios/soporte-ti.html" data-track="service-soporte"><span class="specialty-icon" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><use href="#icon-hero-device"></use></svg></span><span>Soporte empresarial</span></a><a class="specialty-link" href="servicios/diseno-software.html" data-track="service-software"><span class="specialty-icon" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><use href="#icon-hero-software"></use></svg></span><span>Desarrollo de software</span></a><a class="specialty-link" href="servicios/infraestructura-redes.html" data-track="service-infraestructura"><span class="specialty-icon" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><use href="#icon-hero-server"></use></svg></span><span>Infraestructura TI</span></a><a class="specialty-link" href="servicios/cloud-microsoft365.html" data-track="service-cloud"><span class="specialty-icon" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><use href="#icon-hero-cloud"></use></svg></span><span>Cloud</span></a><a class="specialty-link" href="servicios/seguridad-continuidad.html" data-track="service-seguridad"><span class="specialty-icon" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><use href="#icon-hero-shield"></use></svg></span><span>Ciberseguridad</span></a></div></section>
 <section class="section section--soft" id="problema">
 <div class="container"><div class="section-heading"><p class="eyebrow">CUANDO LA TECNOLOGÍA FRENA EL NEGOCIO</p><h2>Menos tiempo resolviendo fallas.<br> Más atención a tu negocio.</h2><p>Las interrupciones, las tareas manuales y los riesgos sin atender consumen tiempo de tu equipo. Identificar su origen permite decidir qué corregir primero.</p></div>
 <div class="problem-list">

@@ -30,3 +30,5 @@ Contenido #32: copy empresarial, CTA, software, microcopy y SEO conservando estr
 Experimento #34: diagramas técnicos del mockup 01 + tarjetas editoriales del 03, exclusivamente en #problema. Rama ai/chatgpt/34-experimental-problem-visual sobre #33. Revisión visual pendiente; no reemplazar main. [Evidencia](../reports/PROBLEM-VISUAL-EXPERIMENT.md).
 
 Interacciones #36: continuar en la misma rama/PR #35 con respuesta de botones, menú y formulario. Mejora progresiva local, movimiento reducido, teclado y touch; sin cambios de lógica de envío. [Evidencia](../reports/INTERACTIONS-EXPERIMENT.md).
+
+Tema y especialidades #37: selector Sistema/Claro/Oscuro, persistencia visual opcional y cinco accesos de servicios en la misma rama/PR experimental #35. Evidencia: reports/THEME-EXPERIMENT.md.

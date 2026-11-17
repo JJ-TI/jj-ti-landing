@@ -16,6 +16,7 @@ for service in services:
     body=f'''<!DOCTYPE html>
 <html lang="es-SV">
 <head>
+<script src="../js/theme.js"></script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)} para empresas en El Salvador | JJ-TI</title>
 <meta name="description" content="{e(service['description'])}">
@@ -27,6 +28,7 @@ for service in services:
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/variables.css"><link rel="stylesheet" href="../css/base.css"><link rel="stylesheet" href="../css/components.css"><link rel="stylesheet" href="../css/glass.css">
+<link rel="stylesheet" href="../css/theme.css">
 <script type="application/ld+json">{json.dumps(schema,ensure_ascii=False).replace('<','\\u003c')}</script>
 </head>
 <body data-page="{slug}">
@@ -41,7 +43,7 @@ for service in services:
 <section aria-labelledby="preguntas"><h2 id="preguntas">Preguntas frecuentes</h2>{''.join('<details><summary>'+e(q)+'</summary><p>'+e(a)+'</p></details>' for q,a in service['faq'])}</section>
 <section aria-labelledby="contacto"><h2 id="contacto">Hablemos de tu necesidad</h2><p>Comparte el contexto de tu empresa sin incluir contraseñas ni información sensible.</p><a href="mailto:info@jj-ti.net" data-track="contact-email">info@jj-ti.net</a> · <a href="tel:+50379124962" data-track="contact-phone">+503&nbsp;7912&nbsp;4962</a> · <a href="https://wa.me/50379124962" data-track="contact-whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a></section>
 </main>
-<footer class="service-page-footer container"><a href="../privacidad.html" data-track="privacy">Privacidad</a><button type="button" class="privacy-settings" data-analytics-settings>Preferencias de analítica</button><p>© 2026 JJ-TI · El Salvador</p></footer>
+<footer class="service-page-footer container"><label class="theme-control" hidden><span class="sr-only">Apariencia</span><select aria-label="Apariencia" data-theme-select><option value="system">Sistema</option><option value="light">Claro</option><option value="dark">Oscuro</option></select></label><a href="../privacidad.html" data-track="privacy">Privacidad</a><button type="button" class="privacy-settings" data-analytics-settings>Preferencias de analítica</button><p>© 2026 JJ-TI · El Salvador</p></footer>
 <section class="consent-panel" data-analytics-consent hidden aria-label="Preferencias de analítica"><p>Si aceptas, mediremos visitas, tiempo visible y enlaces consultados mediante identificadores aleatorios para mejorar el sitio. Estos datos no se vinculan con tu formulario. Puedes rechazar la analítica o retirar tu permiso.</p><div><button type="button" data-analytics-accept>Aceptar analítica</button><button type="button" data-analytics-reject>Rechazar o retirar</button><a href="../privacidad.html">Más información</a></div><p data-analytics-status role="status"></p><button type="button" data-analytics-close>Cerrar preferencias</button></section>
 <script src="../js/config.js" defer></script><script src="../js/analytics.js" defer></script>
 </body></html>
