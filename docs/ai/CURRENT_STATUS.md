@@ -32,3 +32,5 @@ Continuación #36 en la misma rama y PR #35: microinteracciones en botones, men�
 Continuación #37: tema Sistema/Claro/Oscuro en landing, servicios, privacidad y confirmación; preferencia visual independiente de analítica. Franja de especialidades transformada en accesos reales con iconos. Misma rama experimental/PR #35; validación y aceptación visual pendientes. Detalle: reports/THEME-EXPERIMENT.md.
 
 #38 sustituye el select de #37 por un botón sol/luna de 44 px, alineado al menú, con aria-pressed y foco visible. Sin elección guardada sigue al sistema; cada pulsación alterna y recuerda preferencia. Generador, servicios, privacidad y confirmación alineados. Validación final en checks del PR #35; aceptación visual pendiente.
+
+#39 reorganiza exclusivamente espaciado/presentación de cabecera: navegación con margen automático tras la marca, enlaces separados, CTA y tema con espacio propio. Hasta 1023 px usa panel flotante; navegación JS y animación coinciden con ese breakpoint. HTML/copy/destinos y lógica de formulario/tema intactos. Ver reports/HEADER-SPACING.md y checks del PR #35.

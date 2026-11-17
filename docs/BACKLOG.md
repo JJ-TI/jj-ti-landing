@@ -34,3 +34,5 @@ Interacciones #36: continuar en la misma rama/PR #35 con respuesta de botones, m
 Tema y especialidades #37: selector Sistema/Claro/Oscuro, persistencia visual opcional y cinco accesos de servicios en la misma rama/PR experimental #35. Evidencia: reports/THEME-EXPERIMENT.md.
 
 Refinamiento #38: selector sustituido por botón sol/luna junto al menú; sistema por defecto y alternancia binaria con preferencia manual recordada. Misma rama experimental/PR #35.
+
+Cabecera #39: espacio independiente para marca/navegación/tema, panel flotante en móvil/tablet y breakpoint coherente de 1023 px. Misma rama experimental/PR #35; evidencia en reports/HEADER-SPACING.md.

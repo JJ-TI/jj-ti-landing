@@ -79,7 +79,7 @@
   }
   .diagnosis-form .form-status { transition: opacity 180ms ease, background-color 180ms ease; }
 }
-@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+@media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
   .main-nav.is-open { animation: menu-reveal 180ms cubic-bezier(.2, .75, .25, 1) both; }
 }
 @keyframes menu-reveal {
