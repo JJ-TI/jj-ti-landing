@@ -61,23 +61,28 @@
 .specialties { background: rgba(255, 255, 255, .85); }
 .specialties__inner { font-size: .68rem; letter-spacing: .09em; }
 
-/* Señales de negocio: lectura editorial, sin una tarjeta para cada párrafo. */
+/* Experimento #34: diagramas técnicos + tarjetas editoriales, solo #problema. */
 #problema { background: var(--color-background); }
 #problema .section-heading { max-width: 760px; }
-.problem-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-.problem-list .info-card {
-  padding: 24px 0 0;
-  background: transparent;
-  border: 0;
-  border-top: 1px solid var(--glass-line);
-  border-radius: 0;
-  box-shadow: none;
+#problema .problem-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+#problema .info-card {
+  position: relative;
+  min-width: 0;
+  padding: 22px 20px 28px;
+  background: linear-gradient(155deg, #fff 35%, #faf9f6);
+  border: 1px solid rgba(25, 25, 112, .07);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(25, 25, 112, .05);
 }
-.problem-list .info-card:hover { transform: none; box-shadow: none; }
-.problem-mark { display: block; color: var(--color-secondary); font-size: 1.4rem; line-height: 1; margin-bottom: 20px; }
-.problem-mark svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-.problem-list h3 { font-size: 1rem; line-height: 1.4; letter-spacing: -.02em; }
-.problem-list p { font-size: .88rem; margin-bottom: 0; }
+#problema .info-card::after { content: ""; position: absolute; inset: auto 20px 0; height: 3px; border-radius: 3px; background: var(--color-primary); }
+#problema .info-card:hover { transform: none; box-shadow: 0 8px 24px rgba(25, 25, 112, .05); }
+#problema .problem-number { display: flex; align-items: center; gap: 10px; color: #a47d18; font-size: 1.8rem; font-weight: 700; line-height: 1; letter-spacing: -.05em; }
+#problema .problem-number > span { width: 24px; height: 1px; background: currentColor; }
+#problema .problem-visual { position: relative; isolation: isolate; margin: 12px -8px 18px; }
+#problema .problem-visual::before { content: ""; position: absolute; z-index: -1; inset: 18% 0 4%; background: linear-gradient(120deg, rgba(0, 191, 209, .04), rgba(0, 191, 209, .23)); clip-path: polygon(0 70%, 100% 0, 100% 100%, 0 100%); }
+#problema .problem-visual img { display: block; width: 100%; height: auto; }
+#problema .info-card h3 { font-size: 1rem; line-height: 1.4; letter-spacing: -.02em; margin-bottom: 12px; color: var(--color-primary); }
+#problema .info-card p { font-size: .88rem; margin-bottom: 0; line-height: 1.65; }
 
 /* Dos servicios protagonistas; cuatro áreas de especialidad más compactas. */
 .solutions-section {
@@ -219,9 +224,13 @@
   .hero-node__icon { border-radius: 15px; }
   .hero-core__hex { width: 120px; height: 98px; border-radius: 22px; }
   .specialties__inner { flex-wrap: wrap; white-space: normal; justify-content: center; gap: 10px 20px; padding-block: 18px; font-size: .57rem; }
-  .problem-list { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
-  .problem-list h3 { font-size: .94rem; }
-  .problem-list p { font-size: .82rem; }
+  #problema .problem-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  #problema .info-card { padding: 18px 14px 24px; border-radius: 16px; }
+  #problema .info-card::after { inset-inline: 14px; }
+  #problema .problem-number { font-size: 1.65rem; }
+  #problema .problem-visual { margin: 12px -6px 16px; }
+  #problema .info-card h3 { font-size: .94rem; }
+  #problema .info-card p { font-size: .82rem; }
   .solutions-heading { display: block; margin-bottom: 30px; }
   .solutions-heading > p { max-width: none; margin-top: 18px; }
   .solutions-heading h2 br { display: none; }
@@ -243,7 +252,8 @@
   .main-nav { background: rgba(255, 255, 255, .98); }
 }
 @media (max-width: 359px) {
-  .problem-list { grid-template-columns: 1fr; }
+  #problema .problem-list { grid-template-columns: 1fr; }
+  #problema .problem-visual { max-width: 240px; margin-inline: auto; }
 }
 
 /* Preferencias funcionales y páginas de servicio: misma identidad visual. */
@@ -269,3 +279,8 @@
 .service-page-footer { padding-block: 32px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; font-size: .85rem; }
 
 html:not(.js-enabled) .privacy-settings { display: none; }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  #problema .problem-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #problema .problem-visual { max-width: 260px; margin-inline: auto; }
+}

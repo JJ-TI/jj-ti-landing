@@ -26,3 +26,17 @@ Revisión de diseño: #23 — estilo glass, tarjetas con gráficos propios e inc
 P0 #31: seguridad y costos GCP antes de habilitar backend; host, IAM, perímetro, límites económicos y adaptación VM/Cloud Run. [Guía](operations/GCP-SECURITY.md). Controles PROPOSED, no infraestructura aplicada.
 
 Contenido #32: copy empresarial, CTA, software, microcopy y SEO conservando estructura y lógica. Rama ai/chatgpt/32-landing-copy, apilada sobre PR #30. Evaluación y evidencia: [LANDING-COPY](../reports/LANDING-COPY.md). No supone habilitación del backend ni mejora de conversión medida.
+
+Experimento #34: diagramas técnicos del mockup 01 + tarjetas editoriales del 03, exclusivamente en #problema. Rama ai/chatgpt/34-experimental-problem-visual sobre #33. Revisión visual pendiente; no reemplazar main. [Evidencia](../reports/PROBLEM-VISUAL-EXPERIMENT.md).
+
+Interacciones #36: continuar en la misma rama/PR #35 con respuesta de botones, menú y formulario. Mejora progresiva local, movimiento reducido, teclado y touch; sin cambios de lógica de envío. [Evidencia](../reports/INTERACTIONS-EXPERIMENT.md).
+
+Tema y especialidades #37: selector Sistema/Claro/Oscuro, persistencia visual opcional y cinco accesos de servicios en la misma rama/PR experimental #35. Evidencia: reports/THEME-EXPERIMENT.md.
+
+Refinamiento #38: selector sustituido por botón sol/luna junto al menú; sistema por defecto y alternancia binaria con preferencia manual recordada. Misma rama experimental/PR #35.
+
+Cabecera #39: espacio independiente para marca/navegación/tema, panel flotante en móvil/tablet y breakpoint coherente de 1023 px. Misma rama experimental/PR #35; evidencia en reports/HEADER-SPACING.md.
+
+Footer #40: definición visual de marca/soluciones/contacto/redes, SVG locales y perfiles sociales pendientes sin URLs ficticias. WhatsApp usa contacto existente. Misma rama experimental/PR #35; revisión visual pendiente.
+
+Software visual #41: enriquecer #software con diagrama propio y etapas conectadas sin alterar copy/CTA; misma rama/PR #35. Evidencia reports/SOFTWARE-VISUAL.md.

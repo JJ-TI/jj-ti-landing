@@ -22,3 +22,21 @@ Evidencia: reports/FUNCTIONAL-READINESS.md y checks del PR. Preview Pages: solo 
 ## Iteración de contenido — #32
 
 Rama ai/chatgpt/32-landing-copy sobre PR #30. Copy revisado por sección: propuesta de valor, servicios/MSP, desarrollo de software, alcance de planes, proyectos, consultoría, proceso, CTA, formulario, WhatsApp y metadatos. Se conservan estructura, navegación, CSS, recursos gráficos, lógica de API y valores técnicos del formulario. Página de software y fuente/generador alineados; pruebas existentes adaptadas solo a etiquetas/mensajes. Evaluación editorial y evidencia en reports/LANDING-COPY.md. Sin resultados comerciales medidos ni producción habilitada.
+
+## Experimento visual — #34
+
+El usuario eligió combinar diagramas 01 con estilo editorial 03. Rama ai/chatgpt/34-experimental-problem-visual sobre #33. Solo #problema: SVG decorativos locales, números dorados, tarjetas claras y acentos navy/cyan. Copy aprobado y demás secciones intactos; sin cambios JS/API. Estado IMPLEMENTED y TESTED localmente (verify: 38/38); aceptación visual pendiente. Evidencia: reports/PROBLEM-VISUAL-EXPERIMENT.md. Preview aislado bajo experimental/problemas/, sin envío/analítica, no reemplaza la portada de Pages.
+
+Continuación #36 en la misma rama y PR #35: microinteracciones en botones, menú y formulario mediante css/interactions.css y js/interactions.js, cargados solo en la landing. Contenido, destinos, JS funcional y API conservados; script visual sin red/almacenamiento/lectura de datos. Validación y límites en reports/INTERACTIONS-EXPERIMENT.md. La referencia a 2027 es una dirección de diseño, no una predicción acreditada. Aceptación visual sigue pendiente.
+
+Continuación #37: tema Sistema/Claro/Oscuro en landing, servicios, privacidad y confirmación; preferencia visual independiente de analítica. Franja de especialidades transformada en accesos reales con iconos. Misma rama experimental/PR #35; validación y aceptación visual pendientes. Detalle: reports/THEME-EXPERIMENT.md.
+
+#38 sustituye el select de #37 por un botón sol/luna de 44 px, alineado al menú, con aria-pressed y foco visible. Sin elección guardada sigue al sistema; cada pulsación alterna y recuerda preferencia. Generador, servicios, privacidad y confirmación alineados. Validación final en checks del PR #35; aceptación visual pendiente.
+
+#39 reorganiza exclusivamente espaciado/presentación de cabecera: navegación con margen automático tras la marca, enlaces separados, CTA y tema con espacio propio. Hasta 1023 px usa panel flotante; navegación JS y animación coinciden con ese breakpoint. HTML/copy/destinos y lógica de formulario/tema intactos. Ver reports/HEADER-SPACING.md y checks del PR #35.
+
+Refinamiento adicional de #39: contenedor de cabecera de escritorio ampliado de 1200 a 1320 px, conservando márgenes mínimos de 24 px. A 1440 px acerca marca y controles 60 px hacia cada extremo. No cambia contenedor de contenido ni móvil/tablet.
+
+#40: footer de landing con cuatro áreas claras, paleta navy/dorado, enlaces reales a servicios/contacto, privacidad/preferencias y presencia visual de LinkedIn, Instagram, Facebook y TikTok pendiente de cuentas. Esas cuatro redes son contenido no interactivo, no enlaces vacíos. WhatsApp conserva número existente. CSS aislado en css/footer.css, sin nuevas dependencias ni cambios de API. Detalle: reports/FOOTER-EXPERIMENT.md.
+
+#41: presentación de #software enriquecida con diagrama vectorial decorativo de proceso/interfaz/integraciones y etapas conectadas. Copy, CTA/atributos, JS y resto del HTML conservados (salvo referencia CSS). CSS aislado, temas y responsive. Evidencia reports/SOFTWARE-VISUAL.md; aceptación visual pendiente en misma rama/PR #35.
