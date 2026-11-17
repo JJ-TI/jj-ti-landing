@@ -134,3 +134,8 @@
   .header__inner { gap: 20px; }
   .site-header .main-nav { right: 20px; width: calc(100% - 40px); }
 }
+
+/* Más amplitud solo en la cabecera de escritorio; contenido y móvil conservan su ancho. */
+@media (min-width: 1024px) {
+  .site-header .header__inner { width: min(calc(100% - 48px), 1320px); }
+}
