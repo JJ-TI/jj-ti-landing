@@ -50,3 +50,7 @@ reproducibles sin enviar datos. Por eso falta validar la tipografía remota real
 
 Registrar fecha, navegador, tecnología asistiva y resultados cuando se complete
 esta revisión. No marcar estas casillas por el simple resultado verde de axe.
+
+## Selección de texto
+
+El resaltado usa coral #dc2f50 y texto blanco en ambos temas, con contraste aproximado de 4.60:1. En colores forzados se conserva Highlight/HighlightText del sistema. No se modifica el contenido ni se intercepta selección/copia.
