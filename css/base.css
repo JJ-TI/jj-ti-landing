@@ -148,3 +148,17 @@ section[id] { scroll-margin-top: calc(var(--header-height) + 16px); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+
+/* Selección coral: misma lectura en los temas claro y oscuro. */
+::selection {
+  background-color: #dc2f50;
+  color: #fff;
+  text-shadow: none;
+}
+
+@media (forced-colors: active) {
+  ::selection {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+}
