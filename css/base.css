@@ -113,6 +113,38 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid rgba(0, 255, 255, .55);
+  outline: 3px solid var(--color-primary);
   outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-surface);
+}
+
+/* Supera las reglas de campos cargadas en sections.css. */
+.diagnosis-form .field input:focus-visible,
+.diagnosis-form .field textarea:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-surface);
+}
+
+[hidden] { display: none !important; }
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 200;
+  padding: 12px 16px;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus { transform: translateY(0); }
+.contact-fallback a { text-decoration: underline; }
+.diagnosis-fields { min-width: 0; margin: 0; padding: 0; border: 0; }
+section[id] { scroll-margin-top: calc(var(--header-height) + 16px); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
 }
