@@ -25,3 +25,9 @@ build/
 *.tmp
 *.temp
 *.swp
+
+# Test artifacts and local Python environments
+playwright-report/
+test-results/
+.venv/
+__pycache__/

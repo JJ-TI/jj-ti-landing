@@ -1,0 +1,22 @@
+{
+  "name": "jj-ti-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Herramientas de desarrollo para la landing estática JJ-TI",
+  "engines": { "node": ">=24 <25" },
+  "scripts": {
+    "serve": "python3 -m http.server 8080 --bind 0.0.0.0",
+    "lint": "eslint js tests playwright.config.cjs && stylelint 'css/*.css'",
+    "check:links": "python3 scripts/check_links.py",
+    "test": "playwright test",
+    "test:accessibility": "playwright test --grep accesibilidad",
+    "check": "npm run lint && npm run check:links && npm test",
+    "scan:secrets": "bash scripts/scan-secrets.sh"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.65.1",
+    "eslint": "10.15.0",
+    "stylelint": "18.1.0"
+  }
+}

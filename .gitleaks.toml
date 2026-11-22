@@ -1,0 +1,6 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Dependencias y reportes generados; nunca código fuente"
+paths = ['''(^|/)(node_modules|playwright-report|test-results|\.venv|\.git)/''']

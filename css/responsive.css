@@ -4,6 +4,14 @@
 /* --------------------------------------------------------------------------
    Ajustes visuales de la versión geométrica del Hero y las tarjetas.
    -------------------------------------------------------------------------- */
+/* Sin JS, el menú es visible y el botón inoperante no se presenta. */
+@media (max-width: 767px) {
+  html:not(.navigation-ready) .site-header { position: static; height: auto; }
+  html:not(.navigation-ready) .header__inner { height: auto; flex-wrap: wrap; }
+  html:not(.navigation-ready) .main-nav { position: static; display: flex; width: 100%; }
+  html:not(.navigation-ready) .nav-toggle { display: none; }
+}
+
 @media (max-width: 1023px) {
   .hero-orbit {
     width: min(100%, 500px);
