@@ -21,7 +21,7 @@ test('carga recursos, destinos internos y layout sin desbordamiento', async ({ p
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
   const assets = await page.locator('script[src], link[rel="stylesheet"]').evaluateAll(nodes =>
     nodes.map(node => node.src || node.href).filter(url => new URL(url).hostname === '127.0.0.1'));
-  expect(assets.length).toBe(10);
+  expect(assets.length).toBe(17);
   for (const url of assets) expect((await page.request.get(url)).status()).toBe(200);
   expect(await page.locator('a[href^="#"], use[href^="#"]').evaluateAll(nodes =>
     nodes.map(node => node.getAttribute('href').slice(1)).filter(id => !document.getElementById(id)))).toEqual([]);
@@ -35,7 +35,7 @@ test('navegación por teclado, Escape y cambio a escritorio', async ({ page }) =
   await expect(page.getByRole('link', { name: 'Saltar al contenido principal' })).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('main')).toBeFocused();
-  if (page.viewportSize().width > 767) return;
+  if (page.viewportSize().width > 1023) return;
   const toggle = page.locator('[data-nav-toggle]');
   await toggle.focus();
   await page.keyboard.press('Enter');
@@ -128,7 +128,7 @@ test('accesibilidad WCAG AA con menú cerrado y abierto', async ({ page }, testI
     expect(result.violations.flatMap(v => v.nodes.map(n => ({ id: v.id, target: n.target, reason: n.failureSummary })))).toEqual([]);
   };
   await audit('closed');
-  if (page.viewportSize().width <= 767) {
+  if (page.viewportSize().width <= 1023) {
     await page.getByRole('button', { name: 'Abrir menú' }).click();
     await audit('open');
   }

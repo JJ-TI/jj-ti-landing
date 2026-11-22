@@ -51,6 +51,14 @@
     status.className = 'form-status is-success';
     requestLink.focus();
   });
+  document.querySelectorAll('[data-need]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const field = [...form.querySelectorAll('[name="needs"]')]
+        .find((input) => input.value === link.dataset.need);
+      if (field) field.checked = true;
+      clearRequest();
+    });
+  });
   // Se habilita únicamente después de registrar el bloqueo del envío nativo.
   form.querySelector('.diagnosis-fields').disabled = false;
   form.hidden = false;

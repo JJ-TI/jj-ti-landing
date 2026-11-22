@@ -27,9 +27,10 @@ npm test
 ```
 
 axe comprueba las etiquetas `wcag2a`, `wcag2aa`, `wcag21a` y `wcag21aa` sin excluir
-reglas. Se prueba el menú cerrado y abierto en móvil. Los adjuntos JSON de axe
+reglas. Se prueban temas claro/oscuro, menú cerrado y abierto en móvil/tablet y el
+formulario preparado en oscuro. Los adjuntos JSON de axe
 quedan asociados a cada caso en el reporte de Playwright. Las pruebas funcionales
-comprueban Tab, Enter, Escape, foco y anchos 320, 390 y 1440 px. No son una
+comprueban Tab, Enter, Escape, foco y anchos 320, 390, 820 y 1440 px; el barrido de layout incluye 768 y 1024 px. No son una
 validación humana de teclado o lector de pantalla.
 
 Las pruebas bloquean Google Fonts y otras peticiones externas para ser

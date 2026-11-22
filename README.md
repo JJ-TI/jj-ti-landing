@@ -59,10 +59,12 @@ Para usar un Chromium ya instalado puedes indicar
 caché de navegadores en otra ubicación, usa `PLAYWRIGHT_BROWSERS_PATH` tanto al
 instalar como al ejecutar Playwright.
 
-Los 18 casos se distribuyen entre escritorio (1440 px), móvil (390 px) y móvil
-pequeño (320 px). Cubren recursos, fragmentos internos, ausencia de desbordamiento,
+Los 44 casos se distribuyen entre escritorio (1440 px), tablet (820 px), móvil
+(390 px) y móvil pequeño (320 px). Cubren recursos, fragmentos internos, ausencia de desbordamiento,
 teclado, menú, validación y preparación de contacto, ausencia/fallo de JavaScript
-y accesibilidad automatizada con axe. Los resultados y adjuntos axe quedan en
+y accesibilidad automatizada con axe en temas claro y oscuro. También cubren
+preferencias del sistema, almacenamiento bloqueado, movimiento reducido,
+diagramas y selección de consulta de software. Los resultados y adjuntos axe quedan en
 `playwright-report/` y `test-results/` (ignorados por Git).
 
 Consulta [el alcance y las comprobaciones de accesibilidad](docs/accessibility.md).
@@ -87,9 +89,10 @@ habilitan por sí solos esas protecciones ni publican la web.
 ```text
 jj-ti-landing/
 ├── .github/                 # CI y Dependabot
-├── css/                     # variables, base, components, icons, sections, responsive
+├── assets/                  # diagramas SVG locales de problemas y software
+├── css/                     # base visual, glass, interacciones, temas, footer y software
 ├── docs/accessibility.md    # alcance y checklist de accesibilidad
-├── js/                      # main, navigation, form, whatsapp
+├── js/                      # main, navigation, form, whatsapp, theme, interactions
 ├── scripts/                 # enlaces locales y escaneo de secretos
 ├── tests/                   # pruebas funcionales y axe
 ├── index.html
@@ -99,6 +102,24 @@ jj-ti-landing/
 ├── requirements-dev.txt
 └── README.md
 ```
+
+## Capa visual experimental integrada
+
+Se incorporan los diagramas de problemas y software, tarjetas glass,
+especialidades con iconos, microinteracciones, cabecera, footer y temas claro/oscuro
+procedentes del experimento visual del PR #35 (commit
+`fea4b36c9d63ba69c94ce03524c7a93ad015689f`). Se adaptan a esta landing estática;
+los enlaces conducen a secciones presentes y el contacto continúa por WhatsApp.
+
+El tema sigue al sistema hasta que el visitante elige otro. Solo esa preferencia
+visual se guarda en `localStorage`, bajo `jjti-theme-v1`; no se almacena el
+contenido del formulario ni se incorpora analítica. Si el almacenamiento falla,
+el cambio de tema sigue funcionando durante la visita. Las redes sociales sin
+URL real se muestran como pendientes, sin enlaces falsos.
+
+[Alcance de la integración visual](docs/visual-integration.md): no se integra el
+backend, base de datos, proveedores, analítica, contenedores ni infraestructura
+de la rama experimental. Su evaluación queda para una entrega posterior.
 
 ## Configuración de contacto
 

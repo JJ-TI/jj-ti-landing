@@ -1,0 +1,150 @@
+/* Tema semántico: mantener navy/dorado de marca y separar superficies de acentos. */
+:root { color-scheme: light; }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-background: #0c1222;
+  --color-surface: #141e32;
+  --color-text: #eef2fa;
+  --color-text-secondary: #b7c2d5;
+  --color-border: #35435d;
+  --color-secondary: #a4c9f0;
+  --color-secondary-text: #a4c9f0;
+  --color-focus: #7fceeb;
+  --color-accent-text: #e2c568;
+  --color-success: #80d7a3;
+  --color-error: #ffabab;
+  --glass-surface: #141e32;
+  --glass-border: #35435d;
+  --glass-line: #35435d;
+  --glass-shadow: 0 16px 42px -24px rgba(0, 0, 0, .5);
+}
+.theme-control { flex-shrink: 0; }
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 13px;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2);
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+.theme-toggle svg { grid-area: 1 / 1; width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: opacity 180ms ease, transform 180ms ease; }
+.theme-toggle .theme-moon { opacity: 0; transform: rotate(-25deg) scale(.75); }
+:root[data-theme="dark"] .theme-toggle { color: #e2c568; }
+:root[data-theme="dark"] .theme-toggle .theme-sun { opacity: 0; transform: rotate(25deg) scale(.75); }
+:root[data-theme="dark"] .theme-toggle .theme-moon { opacity: 1; transform: none; }
+.theme-toggle:hover { border-color: var(--color-secondary); background-color: var(--color-background); }
+.theme-toggle:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 4px; }
+.header__inner { gap: 28px; }
+.header__inner .theme-control { margin-left: 4px; order: 2; }
+.header__inner .nav-toggle { order: 3; }
+.header__inner .main-nav { order: 1; margin-left: auto; gap: 30px; }
+.specialties { padding-block: 22px; background: var(--color-surface); }
+.specialties .specialties__inner { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; min-height: 0; overflow: visible; white-space: normal; padding-block: 0; }
+.specialty-link { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 14px 12px; border: 1px solid var(--color-border); border-radius: 16px; color: var(--color-text); background: var(--color-background); font-size: .68rem; line-height: 1.5; letter-spacing: .035em; transition: border-color 180ms ease, background-color 180ms ease; }
+.specialty-icon { display: grid; place-items: center; flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px; color: #fff; background: #191970; }
+.specialty-icon svg { width: 32px; height: 32px; }
+.specialty-link:hover { border-color: var(--color-secondary); }
+.specialty-link:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+:root[data-theme="dark"] .site-header { background: rgba(12, 18, 34, .95); border-color: var(--color-border); }
+:root[data-theme="dark"] .main-nav { background-color: #0c1222; }
+:root[data-theme="dark"] .brand__mark { color: #e2c568; }
+:root[data-theme="dark"] .nav-toggle > span:not(.sr-only) { background: #eef2fa; }
+:root[data-theme="dark"] :is(.solutions-section, #problema, .section--soft) { background: var(--color-background); }
+:root[data-theme="dark"] #problema .info-card { background: linear-gradient(145deg, #19253b, #121c2f); border-color: var(--color-border); }
+:root[data-theme="dark"] #problema .info-card h3 { color: var(--color-text); }
+:root[data-theme="dark"] #problema .problem-number { color: #e2c568; }
+:root[data-theme="dark"] #problema .info-card::after { background: #7992e1; }
+:root[data-theme="dark"] #problema .problem-visual { border-radius: 12px; background: #f1f6fa; }
+:root[data-theme="dark"] .services-grid .service-card--software { background: #19253b; }
+:root[data-theme="dark"] :is(.project-grid article, .diagnosis-form, .diagnosis__note) { background: var(--color-surface); }
+:root[data-theme="dark"] .project-grid article:hover { background: #1c2a42; }
+:root[data-theme="dark"] .diagnosis__note strong { color: #e2c568; }
+:root[data-theme="dark"] :is(.field label, .field-group legend) { color: var(--color-text); }
+:root[data-theme="dark"] .field :is(input, textarea, select) { color: var(--color-text); background: #0e182a; border-color: #52627e; }
+:root[data-theme="dark"] .diagnosis-form .field:focus-within > label { color: #b5d9ff; }
+:root[data-theme="dark"] .diagnosis-form .field :is(input, textarea, select):focus-visible { outline-color: var(--color-focus); }
+:root[data-theme="dark"] .diagnosis-form .check-grid label { background: #0e182a; }
+:root[data-theme="dark"] .diagnosis-form .check-grid label:has(:checked) { color: #e0edff; background: #243756; border-color: #a4c9f0; }
+:root[data-theme="dark"] .diagnosis-form .check-grid label:has(:focus-visible) { outline-color: var(--color-focus); }
+:root[data-theme="dark"] .diagnosis-form .form-status:not(:empty) { background: #101c30; }
+:root[data-theme="dark"] .diagnosis-form .field :is(input, textarea, select):user-invalid { background: #301b29; }
+/* Las escenas de producto conservan superficies claras para legibilidad de sus diagramas. */
+:root[data-theme="dark"] .software-scene { background: #f1f6fa; --color-secondary: #35658d; --color-secondary-text: #35658d; }
+:root[data-theme="dark"] .design-cursor { color: #191970; }
+@media (max-width: 1150px) and (min-width: 768px) {
+  .header__inner { gap: 22px; }
+  .header__inner .main-nav { gap: 22px; font-size: .85rem; }
+  .brand__text { display: none; }
+}
+@media (max-width: 900px) {
+  .specialties .specialties__inner { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .specialties { padding-block: 18px; }
+  .specialties .specialties__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .specialty-link { padding: 12px 10px; gap: 8px; font-size: .62rem; }
+  .specialty-icon { width: 34px; height: 34px; border-radius: 10px; }
+  .specialty-icon svg { width: 28px; height: 28px; }
+  .specialty-link:last-child { grid-column: 1 / -1; justify-content: center; }
+}
+
+.theme-control[hidden] { display: none !important; }
+:root.theme-changing *, :root.theme-changing *::before, :root.theme-changing *::after { transition: none !important; }
+:root[data-theme="dark"] .button--secondary { background: #3349a4; border-color: #7c91e4; }
+
+/* Cabecera #39: marca, navegación y utilidades con espacio propio. */
+.site-header .main-nav > .button { margin-left: 8px; }
+@media (max-width: 1023px) {
+  .header__inner { gap: 18px; }
+  .header__inner .theme-control { margin-left: auto; }
+  .site-header .nav-toggle { display: block; }
+  .site-header .main-nav {
+    position: fixed;
+    inset: calc(var(--header-height) + 12px) 24px auto auto;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: min(400px, calc(100% - 48px));
+    max-height: calc(100dvh - var(--header-height) - 36px);
+    overflow-y: auto;
+    gap: 4px;
+    margin: 0;
+    padding: 18px;
+    font-size: .92rem;
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    background: var(--color-surface);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, .14);
+  }
+  .site-header .main-nav.is-open { display: flex; }
+  .site-header .main-nav a:not(.button) { padding: 12px 14px; border-radius: 10px; }
+  .site-header .main-nav a:not(.button):hover { background: var(--color-background); }
+  .site-header .main-nav a:not(.button)::after { inset: auto 14px 6px; width: auto; }
+  .site-header .main-nav > .button { margin: 12px 0 0; }
+}
+@media (max-width: 767px) {
+  .header__inner { gap: 20px; }
+  .site-header .main-nav { right: 20px; width: calc(100% - 40px); }
+}
+
+/* Más amplitud solo en la cabecera de escritorio; contenido y móvil conservan su ancho. */
+@media (min-width: 1024px) {
+  .site-header .header__inner { width: min(calc(100% - 48px), 1320px); }
+}
+
+/* Adaptación estática: la navegación permanece disponible si falla su script. */
+@media (max-width: 1023px) {
+  html:not(.navigation-ready) .site-header { position: static; height: auto; }
+  html:not(.navigation-ready) .header__inner { height: auto; flex-wrap: wrap; }
+  html:not(.navigation-ready) .site-header .main-nav { position: static; display: flex; width: 100%; max-height: none; margin: 0; }
+  html:not(.navigation-ready) .site-header .nav-toggle { display: none; }
+}
+:root[data-theme="dark"] :is(.process span, .skip-link) { color: #eef2fa; }
+:root[data-theme="dark"] .process span { background: #3349a4; }
+:root[data-theme="dark"] .info-card:not(#problema .info-card) { background: var(--color-surface); }

@@ -29,7 +29,7 @@
     if (!navigation.contains(event.target) && !toggle.contains(event.target)) closeMenu();
   });
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 767) closeMenu();
+    if (window.innerWidth > 1023) closeMenu();
   });
   document.documentElement.classList.add('navigation-ready');
 })();

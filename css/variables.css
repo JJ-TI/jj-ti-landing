@@ -24,6 +24,7 @@
   --color-text-secondary: #52525B;
 
   /* Bordes y estados */
+  --color-focus: #32658E;
   --color-border: #E4E4E7;
   --color-border-dark: rgba(255, 255, 255, .16);
   --color-success: #15803D;
