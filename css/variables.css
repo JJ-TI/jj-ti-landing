@@ -10,11 +10,10 @@
   /* Colores de marca */
   --color-primary: #191970;
   --color-primary-dark: #11114f;
-  --color-secondary: #35658D;
-  --color-whatsapp: #12823e;
-  --color-focus: #35658D;
+  --color-secondary: #4682B4;
+  --color-secondary-text: #32658E;
   --color-accent: #D4AF37;
-  --color-accent-text: #806514;
+  --color-accent-text: #806600;
   --color-cyan: #00FFFF;
 
   /* Superficies y texto */
@@ -25,6 +24,7 @@
   --color-text-secondary: #52525B;
 
   /* Bordes y estados */
+  --color-focus: #32658E;
   --color-border: #E4E4E7;
   --color-border-dark: rgba(255, 255, 255, .16);
   --color-success: #15803D;
@@ -61,4 +61,3 @@
   --transition-fast: 180ms ease;
   --transition-normal: 240ms ease;
 }
-

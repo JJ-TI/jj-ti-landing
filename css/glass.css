@@ -61,23 +61,28 @@
 .specialties { background: rgba(255, 255, 255, .85); }
 .specialties__inner { font-size: .68rem; letter-spacing: .09em; }
 
-/* Señales de negocio: lectura editorial, sin una tarjeta para cada párrafo. */
+/* Experimento #34: diagramas técnicos + tarjetas editoriales, solo #problema. */
 #problema { background: var(--color-background); }
 #problema .section-heading { max-width: 760px; }
-.problem-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-.problem-list .info-card {
-  padding: 24px 0 0;
-  background: transparent;
-  border: 0;
-  border-top: 1px solid var(--glass-line);
-  border-radius: 0;
-  box-shadow: none;
+#problema .problem-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+#problema .info-card {
+  position: relative;
+  min-width: 0;
+  padding: 22px 20px 28px;
+  background: linear-gradient(155deg, #fff 35%, #faf9f6);
+  border: 1px solid rgba(25, 25, 112, .07);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(25, 25, 112, .05);
 }
-.problem-list .info-card:hover { transform: none; box-shadow: none; }
-.problem-mark { display: block; color: var(--color-secondary); font-size: 1.4rem; line-height: 1; margin-bottom: 20px; }
-.problem-mark svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-.problem-list h3 { font-size: 1rem; line-height: 1.4; letter-spacing: -.02em; }
-.problem-list p { font-size: .88rem; margin-bottom: 0; }
+#problema .info-card::after { content: ""; position: absolute; inset: auto 20px 0; height: 3px; border-radius: 3px; background: var(--color-primary); }
+#problema .info-card:hover { transform: none; box-shadow: 0 8px 24px rgba(25, 25, 112, .05); }
+#problema .problem-number { display: flex; align-items: center; gap: 10px; color: #a47d18; font-size: 1.8rem; font-weight: 700; line-height: 1; letter-spacing: -.05em; }
+#problema .problem-number > span { width: 24px; height: 1px; background: currentColor; }
+#problema .problem-visual { position: relative; isolation: isolate; margin: 12px -8px 18px; }
+#problema .problem-visual::before { content: ""; position: absolute; z-index: -1; inset: 18% 0 4%; background: linear-gradient(120deg, rgba(0, 191, 209, .04), rgba(0, 191, 209, .23)); clip-path: polygon(0 70%, 100% 0, 100% 100%, 0 100%); }
+#problema .problem-visual img { display: block; width: 100%; height: auto; }
+#problema .info-card h3 { font-size: 1rem; line-height: 1.4; letter-spacing: -.02em; margin-bottom: 12px; color: var(--color-primary); }
+#problema .info-card p { font-size: .88rem; margin-bottom: 0; line-height: 1.65; }
 
 /* Dos servicios protagonistas; cuatro áreas de especialidad más compactas. */
 .solutions-section {
@@ -107,7 +112,7 @@
 .services-grid .service-card::after { content: none; }
 .services-grid .service-card:hover { transform: translateY(-3px); box-shadow: 0 22px 50px -28px rgba(25, 25, 112, .32), inset 0 1px 0 #fff; }
 .service-card__copy { position: relative; z-index: 1; }
-.service-kicker { color: var(--color-secondary); font-size: .62rem !important; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 12px; }
+.service-kicker { color: var(--color-secondary-text); font-size: .62rem !important; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 12px; }
 .services-grid .service-card h3 { max-width: none; font-size: 1.17rem; letter-spacing: -.035em; line-height: 1.25; margin-bottom: 12px; }
 .services-grid .service-description { font-size: .88rem; line-height: 1.65; margin-bottom: 20px; }
 .services-grid .service-card a { display: inline-flex; align-items: center; gap: 12px; font-size: .8rem; line-height: 1.4; }
@@ -149,7 +154,7 @@
 .software-scene { position: relative; border: 1px solid rgba(25, 25, 112, .14); border-radius: 12px; background: rgba(255, 255, 255, .8); box-shadow: 0 18px 32px -14px rgba(25, 25, 112, .25); transform: rotate(3deg); }
 .window-bar { display: flex; align-items: center; gap: 3px; padding: 10px; border-bottom: 1px solid rgba(25, 25, 112, .09); }
 .window-bar > span { width: 4px; height: 4px; border-radius: 50%; background: rgba(25, 25, 112, .26); }
-.window-bar i { font-style: normal; font-size: .44rem; color: var(--color-secondary); margin-left: 6px; }
+.window-bar i { font-style: normal; font-size: .44rem; color: var(--color-secondary-text); margin-left: 6px; }
 .window-body { display: flex; min-height: 112px; }
 .window-sidebar { width: 28px; padding: 12px 8px; background: rgba(25, 25, 112, .045); }
 .window-sidebar b { display: block; width: 12px; height: 3px; background: rgba(25, 25, 112, .18); margin-bottom: 12px; }
@@ -171,7 +176,7 @@
 .software-steps article { position: relative; padding: 0 0 24px 24px; margin-bottom: 22px; border-bottom: 1px solid var(--glass-line); }
 .software-steps article:last-child { margin-bottom: 0; border-bottom: 0; padding-bottom: 0; }
 .software-steps article::before { content: ""; width: 5px; height: 5px; border-radius: 50%; position: absolute; left: 0; top: 7px; background: var(--color-accent-text); }
-.software-steps article > span { display: block; color: var(--color-secondary); font-size: .64rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 9px; }
+.software-steps article > span { display: block; color: var(--color-secondary-text); font-size: .64rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 9px; }
 .software-steps h3 { font-size: 1.1rem; margin-bottom: 9px; }
 .software-steps p { font-size: .88rem; max-width: 390px; margin-bottom: 0; }
 
@@ -186,7 +191,7 @@
 .project-grid { background: transparent; border: 0; border-radius: 0; gap: 0 36px; }
 .project-grid article { min-height: 160px; padding: 26px 0; background: transparent; border-top: 1px solid var(--glass-line); }
 .project-grid article:hover { background: transparent; }
-.project-grid span { font-size: .6rem; text-transform: uppercase; letter-spacing: .08em; color: var(--color-secondary); }
+.project-grid span { font-size: .6rem; text-transform: uppercase; letter-spacing: .08em; color: var(--color-secondary-text); }
 .project-grid h3 { font-size: 1.14rem; margin-top: 13px; }
 .positioning { background: radial-gradient(ellipse at 0 0, rgba(70, 130, 180, .25), transparent 65%), var(--color-primary); }
 .pillars span { border-radius: 14px; background: rgba(255, 255, 255, .05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08); }
@@ -219,9 +224,13 @@
   .hero-node__icon { border-radius: 15px; }
   .hero-core__hex { width: 120px; height: 98px; border-radius: 22px; }
   .specialties__inner { flex-wrap: wrap; white-space: normal; justify-content: center; gap: 10px 20px; padding-block: 18px; font-size: .57rem; }
-  .problem-list { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
-  .problem-list h3 { font-size: .94rem; }
-  .problem-list p { font-size: .82rem; }
+  #problema .problem-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  #problema .info-card { padding: 18px 14px 24px; border-radius: 16px; }
+  #problema .info-card::after { inset-inline: 14px; }
+  #problema .problem-number { font-size: 1.65rem; }
+  #problema .problem-visual { margin: 12px -6px 16px; }
+  #problema .info-card h3 { font-size: .94rem; }
+  #problema .info-card p { font-size: .82rem; }
   .solutions-heading { display: block; margin-bottom: 30px; }
   .solutions-heading > p { max-width: none; margin-top: 18px; }
   .solutions-heading h2 br { display: none; }
@@ -243,29 +252,12 @@
   .main-nav { background: rgba(255, 255, 255, .98); }
 }
 @media (max-width: 359px) {
-  .problem-list { grid-template-columns: 1fr; }
+  #problema .problem-list { grid-template-columns: 1fr; }
+  #problema .problem-visual { max-width: 240px; margin-inline: auto; }
 }
 
-/* Preferencias funcionales y páginas de servicio: misma identidad visual. */
-[hidden] { display: none !important; }
-.privacy-settings { border: 0; padding: 4px 0; background: transparent; color: inherit; text-decoration: underline; font-size: inherit; }
-.consent-panel { position: fixed; z-index: 210; right: 24px; bottom: 80px; width: min(470px, calc(100% - 40px)); padding: 22px; border: 1px solid var(--color-border); border-radius: 16px; background: var(--color-surface); box-shadow: var(--shadow-card); }
-.consent-panel p { font-size: .88rem; margin-bottom: 12px; }
-.consent-panel > div { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.consent-panel button { min-height: 42px; padding: 10px 14px; border: 1px solid var(--color-primary); border-radius: 8px; background: var(--color-surface); color: var(--color-primary); }
-.consent-panel a { color: var(--color-secondary); text-decoration: underline; font-size: .85rem; }
-.service-page-header { padding-block: 24px; border-bottom: 1px solid var(--color-border); }
-.service-page-header > div { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.service-detail { max-width: 900px; padding-block: 48px; }
-.service-detail nav { margin-bottom: 40px; font-size: .85rem; }
-.service-detail a:not(.button) { text-decoration: underline; color: var(--color-secondary); }
-.service-detail-lead { max-width: 720px; font-size: 1.12rem; }
-.service-detail section { padding-block: 36px; border-bottom: 1px solid var(--color-border); }
-.service-detail h2 { font-size: 1.65rem; }
-.service-detail li { margin-block: 12px; }
-.service-detail details { padding: 18px 0; }
-.service-detail summary { cursor: pointer; font-weight: 600; }
-.service-detail details p { margin-top: 16px; }
-.service-page-footer { padding-block: 32px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; font-size: .85rem; }
 
-html:not(.js-enabled) .privacy-settings { display: none; }
+@media (min-width: 768px) and (max-width: 1023px) {
+  #problema .problem-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #problema .problem-visual { max-width: 260px; margin-inline: auto; }
+}

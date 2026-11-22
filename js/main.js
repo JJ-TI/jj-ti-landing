@@ -29,4 +29,3 @@
   // passive mejora el comportamiento del scroll porque el listener nunca cancela el evento.
   window.addEventListener('scroll', updateHeaderState, { passive: true });
 })();
-

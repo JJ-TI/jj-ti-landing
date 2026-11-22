@@ -29,7 +29,7 @@ a {
   text-decoration: none
 }
 
-button, input, textarea, select {
+button, input, textarea {
   font: inherit
 }
 
@@ -112,27 +112,39 @@ p {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 3px solid var(--color-focus);
+textarea:focus-visible {
+  outline: 3px solid var(--color-primary);
   outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-surface);
 }
 
-.skip-link { position: fixed; left: 16px; top: -100px; z-index: 200; padding: 12px 20px; background: var(--color-surface); color: var(--color-primary); }
-.skip-link:focus { top: 12px; }
-.form-trap { display: none; }
-.field select { width: 100%; min-height: 48px; padding: 12px 14px; background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
-.privacy-consent { display: block; margin-bottom: var(--space-5); font-size: .85rem; color: var(--color-text-secondary); }
-.privacy-consent a { color: var(--color-secondary); text-decoration: underline; }
-.button:disabled { opacity: .65; cursor: wait; }
-.form-status.is-info { color: var(--color-text-secondary); }
-.document-page { max-width: 780px; padding-block: var(--space-8); }
-.document-page a { color: var(--color-secondary); text-decoration: underline; }
-.section--dark :focus-visible { outline-color: var(--color-cyan); }
+/* Supera las reglas de campos cargadas en sections.css. */
+.diagnosis-form .field input:focus-visible,
+.diagnosis-form .field textarea:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-surface);
+}
+
+[hidden] { display: none !important; }
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 200;
+  padding: 12px 16px;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus { transform: translateY(0); }
+.contact-fallback a { text-decoration: underline; }
+.diagnosis-fields { min-width: 0; margin: 0; padding: 0; border: 0; }
+section[id] { scroll-margin-top: calc(var(--header-height) + 16px); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { transition: none !important; animation: none !important; }
+  *, *::before, *::after { transition: none !important; }
 }
-
-.preview-banner { padding: 12px 20px; background: #fff4c2; color: #191970; text-align: center; font: 600 14px/1.5 system-ui, sans-serif; }
-.preview-banner a { text-decoration: underline; }

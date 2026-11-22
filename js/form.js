@@ -1,33 +1,65 @@
-/** Registro durable de solicitudes; nunca equipara recepción a correo entregado. */
+/** Prepara una solicitud localmente; el visitante decide cuándo enviarla. */
 (() => {
-  const form=document.querySelector('[data-diagnosis-form]');
-  const status=document.querySelector('[data-form-status]');
-  if(!form||!status)return;
-  const button=form.querySelector('[type="submit"]');
-  const needs=[...form.querySelectorAll('[name="needs"]')];
-  const plan=form.querySelector('[name="plan"]');
-  let sending=false;
-  let attempt=null;
-  const setStatus=(message,type)=>{status.textContent=message;status.className=`form-status is-${type}`;};
-  const validateNeeds=()=>{
-    const valid=needs.some(input=>input.checked);
-    needs[0]?.setCustomValidity(valid?'':'Selecciona al menos un servicio relacionado con tu consulta. Si no estás seguro, elige «Otro».');return valid;
+  const form = document.querySelector('[data-diagnosis-form]');
+  const status = document.querySelector('[data-form-status]');
+  const requestLink = document.querySelector('[data-whatsapp-request]');
+  const contactLink = document.querySelector('[data-contact-whatsapp]');
+  if (!form || !status || !requestLink || !contactLink) return;
+
+  const clearRequest = () => {
+    requestLink.hidden = true;
+    requestLink.removeAttribute('href');
+    status.textContent = '';
+    status.className = 'form-status';
   };
-  needs.forEach(input=>input.addEventListener('change',validateNeeds));validateNeeds();
-  const select=(value,need)=>{
-    if(![...plan.options].some(option=>option.value===value))return;
-    plan.value=value;
-    const chosen=needs.find(input=>input.value===need);if(chosen)chosen.checked=true;
-    validateNeeds();setStatus(`Tu selección está lista. Puedes modificarla antes de enviar.`,'info');
-  };
-  document.querySelectorAll('[data-plan]').forEach(link=>link.addEventListener('click',()=>select(link.dataset.plan,link.dataset.need||'Soporte TI')));
-  const services={software:'Diseño de software',soporte:'Soporte TI',infraestructura:'Redes / Infraestructura',cloud:'Microsoft 365 / Cloud',seguridad:'Ciberseguridad',cctv:'CCTV',respaldo:'Backup / Continuidad'};
-  const selected=new URLSearchParams(location.search).get('servicio');
-  if(services[selected])select('Proyecto puntual',services[selected]);
-  const emit=target=>window.dispatchEvent(new CustomEvent('jjti:event',{detail:{kind:'click',target}}));
-  form.addEventListener('focusin',()=>emit('lead-start'),{once:true});
+  form.addEventListener('input', clearRequest);
+  form.addEventListener('change', clearRequest);
+  form.addEventListener('reset', clearRequest);
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    setStatus('Vista previa de diseño: el envío está deshabilitado.', 'info');
+    clearRequest();
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    const needs = data.getAll('needs');
+    if (needs.length === 0) {
+      status.textContent = 'Selecciona al menos una necesidad para continuar.';
+      status.className = 'form-status is-error';
+      form.querySelector('[name="needs"]').focus();
+      return;
+    }
+    const fields = ['name', 'company', 'phone', 'email', 'message'];
+    if (fields.some((name) => !String(data.get(name) || '').trim())) {
+      status.textContent = 'Completa los campos con información válida.';
+      status.className = 'form-status is-error';
+      return;
+    }
+    const text = [
+      'Hola, JJ-TI. Quisiera solicitar un diagnóstico.',
+      `Nombre: ${String(data.get('name')).trim()}`,
+      `Empresa: ${String(data.get('company')).trim()}`,
+      `Teléfono: ${String(data.get('phone')).trim()}`,
+      `Correo: ${String(data.get('email')).trim()}`,
+      `Necesidades: ${needs.join(', ')}`,
+      `Detalle: ${String(data.get('message')).trim()}`,
+    ].join('\n');
+    const url = new URL(contactLink.href);
+    url.search = '';
+    url.searchParams.set('text', text);
+    requestLink.href = url.href;
+    requestLink.hidden = false;
+    status.textContent = 'Mensaje preparado. Revisa y envíalo en WhatsApp; todavía no se ha enviado.';
+    status.className = 'form-status is-success';
+    requestLink.focus();
   });
+  document.querySelectorAll('[data-need]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const field = [...form.querySelectorAll('[name="needs"]')]
+        .find((input) => input.value === link.dataset.need);
+      if (field) field.checked = true;
+      clearRequest();
+    });
+  });
+  // Se habilita únicamente después de registrar el bloqueo del envío nativo.
+  form.querySelector('.diagnosis-fields').disabled = false;
+  form.hidden = false;
 })();

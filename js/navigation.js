@@ -1,55 +1,35 @@
-/**
- * JJ-TI — navegación responsive.
- *
- * Controla únicamente el menú móvil:
- * - apertura/cierre;
- * - atributo ARIA `aria-expanded`;
- * - bloqueo del scroll del body mientras el menú está abierto;
- * - cierre al seleccionar una opción o al volver a escritorio.
- */
+/** Navegación móvil con alternativa CSS sin JavaScript. */
 (() => {
-  /** Botón que abre/cierra el menú móvil. */
-  const toggleButton = document.querySelector('[data-nav-toggle]');
-  /** Contenedor de navegación que cambia entre abierto y cerrado. */
+  const toggle = document.querySelector('[data-nav-toggle]');
   const navigation = document.querySelector('[data-navigation]');
-
-  // Evita errores si el componente no existe en otra página del proyecto.
-  if (!toggleButton || !navigation) return;
-
-  /**
-   * Cierra el menú y sincroniza todos sus estados visuales y de accesibilidad.
-   */
+  if (!toggle || !navigation) return;
+  const label = toggle.querySelector('.sr-only');
   const closeMenu = () => {
     navigation.classList.remove('is-open');
-    toggleButton.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-expanded', 'false');
+    label.textContent = 'Abrir menú';
     document.body.classList.remove('menu-open');
   };
-
-  /**
-   * Alterna el menú y conserva una única fuente de verdad: si la clase existe,
-   * el menú está abierto.
-   */
-  toggleButton.addEventListener('click', () => {
+  toggle.addEventListener('click', () => {
     const isOpen = navigation.classList.toggle('is-open');
-    toggleButton.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    label.textContent = isOpen ? 'Cerrar menú' : 'Abrir menú';
     document.body.classList.toggle('menu-open', isOpen);
   });
-
-  // En móvil, cualquier enlace seleccionado debe cerrar el menú inmediatamente.
-  navigation.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  // Al pasar a escritorio no necesitamos conservar el estado móvil.
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && navigation.classList.contains('is-open')) {
       closeMenu();
-      toggleButton.focus();
+      toggle.focus();
     }
   });
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 767) closeMenu();
+  navigation.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
   });
+  document.addEventListener('focusin', (event) => {
+    if (!navigation.contains(event.target) && !toggle.contains(event.target)) closeMenu();
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1023) closeMenu();
+  });
+  document.documentElement.classList.add('navigation-ready');
 })();
-
