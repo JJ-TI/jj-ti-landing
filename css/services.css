@@ -1,0 +1,29 @@
+.service-header { padding-block: 20px; border-bottom: 1px solid var(--color-border); background: var(--color-surface); }
+.service-header > .container, .service-header-actions { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.service-header-actions > a { font-size: .82rem; text-decoration: underline; text-underline-offset: 4px; }
+.service-detail { max-width: 960px; padding-block: 36px 60px; }
+.service-detail > nav { margin-bottom: 40px; color: var(--color-text-secondary); font-size: .8rem; }
+.service-detail a:not(.button) { color: var(--color-secondary-text); text-decoration: underline; text-underline-offset: 4px; }
+.service-intro { padding: 36px; border: 1px solid var(--color-border); border-radius: 24px; background: var(--color-surface); }
+.service-intro h1 { font-size: clamp(2rem, 5vw, 3rem); max-width: 700px; margin-bottom: 24px; }
+.service-summary { max-width: 700px; font-size: 1.08rem; line-height: 1.75; margin-bottom: 28px; }
+.service-chapter { padding-block: 36px; border-bottom: 1px solid var(--color-border); }
+.service-chapter h2 { font-size: 1.5rem; margin-bottom: 22px; }
+.service-chapter ul { padding-left: 24px; }
+.service-chapter li { padding-left: 8px; margin-block: 16px; color: var(--color-text-secondary); }
+.service-chapter li::marker { color: var(--color-accent-text); }
+.service-chapter details { padding: 18px 0; border-top: 1px solid var(--color-border); }
+.service-chapter summary { font-weight: 600; cursor: pointer; }
+.service-chapter details p { margin: 16px 0 0; }
+.service-contact { display: flex; flex-wrap: wrap; gap: 20px; }
+.service-footer { padding-block: 28px; background: var(--color-surface); border-top: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: .75rem; }
+.service-footer > .container { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.service-footer a { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 600px) {
+  .service-header > .container { align-items: flex-start; }
+  .service-header .brand__text { display: none; }
+  .service-header-actions { gap: 16px; }
+  .service-header-actions > a { max-width: 105px; }
+  .service-intro { padding: 26px 20px; }
+  .service-summary { font-size: 1rem; }
+}
