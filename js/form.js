@@ -59,6 +59,14 @@
       clearRequest();
     });
   });
+  // Contexto de páginas de servicio: solo valores conocidos, nunca texto de la URL.
+  const services = { soporte: 'Soporte TI', software: 'Diseño de software', infraestructura: 'Redes / Infraestructura', cloud: 'Microsoft 365 / Cloud', seguridad: 'Ciberseguridad', cctv: 'CCTV' };
+  const selected = new window.URLSearchParams(window.location.search).get('servicio');
+  const chosen = Object.hasOwn(services, selected) ? services[selected] : null;
+  if (chosen) {
+    const field = [...form.querySelectorAll('[name="needs"]')].find(input => input.value === chosen);
+    if (field) field.checked = true;
+  }
   // Se habilita únicamente después de registrar el bloqueo del envío nativo.
   form.querySelector('.diagnosis-fields').disabled = false;
   form.hidden = false;
