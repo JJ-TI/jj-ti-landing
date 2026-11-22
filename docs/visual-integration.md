@@ -19,8 +19,10 @@ Es una adaptación selectiva; no un merge completo de la rama.
   durante la visita si el almacenamiento está bloqueado.
 - Microinteracciones de botones, navegación y campos, con movimiento reducido y
   sin interceptar clics o envíos. Coordenadas del puntero efímeras, sin red.
-- Enlaces de páginas de servicio del experimento adaptados a las secciones de esta
-  landing. El CTA de software selecciona su necesidad en el formulario existente.
+- Páginas descriptivas de servicios restauradas en la revisión #50: especialidades,
+  tarjetas y footer abren su detalle, no anclas genéricas. Sus CTA vuelven al
+  formulario con una necesidad permitida preseleccionada. El CTA de software
+  de la landing mantiene su selección directa.
 - Se conserva navegación sin JavaScript hasta 1023 px y se ajustan variantes de
   contraste oscuro para mantener legibilidad sobre diagramas claros.
 
@@ -64,3 +66,7 @@ navegadores. La revisión humana de accesibilidad sigue registrada en
 La integración en código y su validación local no equivalen a publicación,
 recepción real de WhatsApp ni habilitación del backend. El backend se evaluará
 por separado antes de decidir su adopción.
+
+## Corrección de destinos #50
+
+Se restaura el contenido descriptivo aprobado de los seis servicios del experimento, sin sus endpoints, scripts de analítica o consentimiento de seguimiento. Son páginas HTML reales con alcance, preguntas frecuentes y contacto, con tema compartido y fallback sin JS. La preselección de consulta usa un mapa cerrado; no refleja texto arbitrario de la URL. Pruebas nuevas recorren las seis páginas, persistencia de tema, vuelta contextual, entrada desconocida y accesibilidad claro/oscuro. Validación final por SHA en PR/checks; no representa habilitación del backend.

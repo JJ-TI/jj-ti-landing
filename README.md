@@ -59,7 +59,7 @@ Para usar un Chromium ya instalado puedes indicar
 caché de navegadores en otra ubicación, usa `PLAYWRIGHT_BROWSERS_PATH` tanto al
 instalar como al ejecutar Playwright.
 
-Los 44 casos se distribuyen entre escritorio (1440 px), tablet (820 px), móvil
+Los 52 casos se distribuyen entre escritorio (1440 px), tablet (820 px), móvil
 (390 px) y móvil pequeño (320 px). Cubren recursos, fragmentos internos, ausencia de desbordamiento,
 teclado, menú, validación y preparación de contacto, ausencia/fallo de JavaScript
 y accesibilidad automatizada con axe en temas claro y oscuro. También cubren
@@ -150,3 +150,7 @@ el commit `e0693ac41dd3f6b190e3104180b7164f226ab412`. Se toman como referencia
 [SEC](https://github.com/JJ-TI/segaf/blob/e0693ac41dd3f6b190e3104180b7164f226ab412/handbooks/security/README.md)
 y [DOCSYNC](https://github.com/JJ-TI/segaf/blob/e0693ac41dd3f6b190e3104180b7164f226ab412/standards/global/DOCUMENT_SYNCHRONIZATION.md).
 No constituye certificación integral ni adopción de los puntos 9–16.
+
+## Descripciones de servicios
+
+Los accesos de especialidades, tarjetas y footer abren seis páginas estáticas en `servicios/`. El contenido aprobado vive en `content/services.json`; regenerar con `python3 scripts/generate_services.py`. Conservan el tema y enlazan al formulario con un servicio conocido preseleccionado. No registran ni envían solicitudes automáticamente; continúa el flujo manual de WhatsApp. El comprobador de enlaces y CI incluyen estas páginas anidadas.

@@ -31,11 +31,19 @@ def check_ref(ref, source, ids=None):
     target = (source.parent / unquote(url.path)).resolve() if url.path else source
     if not target.is_relative_to(ROOT) or not target.exists():
         errors.append(f"{source.relative_to(ROOT)}: no existe {ref}")
-    elif url.fragment and ids is not None and not url.path and unquote(url.fragment) not in ids:
-        errors.append(f"{source.relative_to(ROOT)}: destino ausente {ref}")
+    elif url.fragment and ids is not None:
+        target_ids = ids
+        if url.path and target.suffix == '.html':
+            target_page = Page()
+            target_page.feed(target.read_text())
+            target_ids = target_page.ids
+        if unquote(url.fragment) not in target_ids:
+            errors.append(f"{source.relative_to(ROOT)}: destino ausente {ref}")
 
 
-for source in ROOT.glob("*.html"):
+for source in ROOT.rglob("*.html"):
+    if any(part in {"node_modules", ".git", "playwright-report", "test-results"} for part in source.relative_to(ROOT).parts):
+        continue
     page = Page()
     page.feed(source.read_text())
     for name, count in Counter(page.ids).items():

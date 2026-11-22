@@ -37,7 +37,7 @@ jobs:
           python -m pip install -r requirements-dev.txt
           npx playwright install --with-deps chromium
       - name: Validate HTML
-        run: html5validator index.html
+        run: html5validator index.html servicios/*.html
       - name: Lint JavaScript and CSS, check local links
         run: |
           npm run lint
