@@ -1,0 +1,45 @@
+# ==============================================================================
+# SEGAF PROJECT GOVERNANCE MANIFEST (v2.0) — PROVISIONAL (PROPOSED)
+# ==============================================================================
+# Estado: PROPOSED — Clasificación y nivel objetivo pendientes de ratificación
+# humana por el Tech Lead. No constituye certificación PACA.
+schema_version: "2.0.0"
+
+project:
+  id: "jj-ti-landing"
+  name: "JJ-TI — Landing"
+  owner: "jagvortex-droid"
+  repository: "https://github.com/JJ-TI/jj-ti-landing"
+  description: "Sitio corporativo estático de JJ-TI para presentación de servicios y preparación local de consultas por WhatsApp y correo"
+
+classification:
+  project_origin: "EXISTING"
+  engagement_model: "internal-product"
+  business_criticality: "BUSINESS_CRITICAL"
+  data_sensitivity: "PUBLIC"
+  network_exposure: "PUBLIC_INTERNET"
+  risk_tier: "MEDIUM"
+  domain_protection_level: "A1_STANDARD"
+  size_profile: "S"
+  technical_archetype: "frontend-app"
+  team_topology: "solo_with_ai"
+  platform_profile: "standard"
+
+architecture:
+  business_domain: "captacion-comercial"
+  style: "static-site"
+  target_paca_level: "L1"
+  adrs_path: "docs/architecture/adrs"
+
+governance:
+  modalidad: "A"
+  primary_owner: "jagvortex-droid"
+
+exceptions: []
+
+adoption:
+  status: "PROPOSED"
+  classification_review_required: true
+  segaf_repository: "https://github.com/JJ-TI/segaf"
+  segaf_commit: "ad8d675972851b5d317878859dad9fa51576e0cd"
+  schema_blob_sha: "fac8e8aae689b3457096655b165977086bf13510"
