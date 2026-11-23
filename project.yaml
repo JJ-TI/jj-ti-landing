@@ -16,7 +16,10 @@ classification:
   project_origin: "EXISTING"
   engagement_model: "internal-product"
   business_criticality: "BUSINESS_CRITICAL"
-  data_sensitivity: "PUBLIC"
+  # Datos personales de contacto (nombre, empresa, teléfono, correo, consulta)
+  # procesados en memoria del navegador para preparar un enlace voluntario de
+  # WhatsApp, sin almacenamiento ni transmisión automática por parte del sitio.
+  data_sensitivity: "CONFIDENTIAL"
   network_exposure: "PUBLIC_INTERNET"
   risk_tier: "MEDIUM"
   domain_protection_level: "A1_STANDARD"
